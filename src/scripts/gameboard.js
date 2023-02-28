@@ -25,11 +25,12 @@ export class Gameboard {
 
     receiveAttack(cord) {
         const cordMatch = (val) => cord.includes(val);
-        
+
         if(this.placeShip(4, "up").every(cordMatch)) {
             return "hit";
         }
-
+        
+        this.miss += 1;
         return "miss";
     }
 }
