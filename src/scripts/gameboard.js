@@ -5,6 +5,8 @@ export class Gameboard {
         this.board = this.createBoard();
         this.hit = 0;
         this.miss = 0;
+        // Fill this.ships with ships from placeShip
+        this.ships = [];
     }
 
     createBoard() {
@@ -29,7 +31,7 @@ export class Gameboard {
             y++
         }
     }
-
+    // Current code is for Tests
     placeShip(x, dir) {
         const directions = ["up", "left", "right", "down"];
         if (x < 1 || x > 10 || !directions.includes(dir)) {
@@ -43,7 +45,7 @@ export class Gameboard {
         const position = [x, dir];
         return position;
     }
-
+    // Current code is for Tests
     receiveAttack(cord) {
         const cordMatch = (val) => cord.includes(val);
 
@@ -52,12 +54,20 @@ export class Gameboard {
         // Which means we will have to test if the ( cord ) matches an existing ship on [x, y] cordinates
         // Need a way to track Gameboard and Ships on said Gameboard.
 
+
+        
         if(this.placeShip(4, "up").every(cordMatch)) {
             return "hit";
         }
 
         this.miss += 1;
         return "miss";
+    }
+
+    allSunk() {
+        // Report if all ships have been sunk on any given player's board
+        // Players will each initiate a Gameboard class for their own side to place ships
+        // Will check the this.ships array and if all objects return sunk to be true
     }
 }
 
