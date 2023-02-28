@@ -3,6 +3,8 @@ import {Ship} from './main';
 export class Gameboard {
     constructor(ship) {
         this.ship = ship;
+        this.hit = 0;
+        this.miss = 0;
     }
 
     placeShip(x, dir) {
@@ -19,5 +21,15 @@ export class Gameboard {
 
         const position = [x, dir];
         return position;
+    }
+
+    receiveAttack(cord) {
+        const cordMatch = (val) => cord.includes(val);
+        
+        if(this.placeShip(4, "up").every(cordMatch)) {
+            return "hit";
+        }
+
+        return "miss";
     }
 }
