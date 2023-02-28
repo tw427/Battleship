@@ -15,6 +15,4 @@ class Ship {
     }
 }
 
-const test = new Ship(4)
-test.hit()
-console.log(test)
+const firstShip = new Ship(4);

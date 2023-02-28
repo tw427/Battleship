@@ -7,24 +7,6 @@ module.exports = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
-  modulePaths: ['/shared/vendor/modules'],
-  moduleFileExtensions: ['js', 'jsx'],
-  moduleDirectories: ['node_modules', 'bower_components', 'shared'],
-
-  moduleNameMapper: {
-    '\\.(css|less)$': 'identity-obj-proxy',
-    '\\.(gif|ttf|eot|svg)$': '<rootDir>/__mocks__/fileMock.js',
-
-    '^react(.*)$': '<rootDir>/vendor/react-master$1',
-    '^config$': '<rootDir>/configs/app-config.js',
-  },
-  transform: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/fileTransformer.js',
-      "\\.[jt]sx?$": "babel-jest",
-      "\\.css$": "some-css-transformer",
-  },
-
   // Stop running tests after `n` failures
   // bail: 0,
 

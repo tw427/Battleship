@@ -1,1 +1,1 @@
-(()=>{const s=new class{constructor(s){this.length=s,this.damage=0,this.sunk=!1}hit(){return this.damage+=1,this.damage}isSunk(){this.damage==this.length?this.sunk=!0:this.sunk=!1}}(4);s.hit(),console.log(s)})();
+new class{constructor(s){this.length=s,this.damage=0,this.sunk=!1}hit(){return this.damage+=1,this.damage}isSunk(){this.damage==this.length?this.sunk=!0:this.sunk=!1}}(4);
