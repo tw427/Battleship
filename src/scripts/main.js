@@ -6,7 +6,7 @@ class Ship {
     }
 
     hit() {
-        hit += 1;
+        this.health += 1;
     }
 
     isSunk() {
