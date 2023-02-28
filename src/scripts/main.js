@@ -4,15 +4,18 @@ class Ship {
         this.damage = 0;
         this.sunk = false;
     }
-
+    
     hit() {
         this.damage += 1;
         return this.damage;
     }
-
+    
     isSunk() {
         this.damage == this.length ? this.sunk = true : this.sunk = false;
+        return this.sunk;
     }
-}
+};
 
-const firstShip = new Ship(4);
+module.exports = {
+    Ship,
+}
