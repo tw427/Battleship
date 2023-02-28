@@ -17,4 +17,8 @@ describe("Gameboard class", () => {
 
         expect(testGB.miss).toEqual(1);
     });
+
+    test("Gameboard is 10x10", () => {
+        expect(testGB.board.length).toEqual(100);
+    });
 });
