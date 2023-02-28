@@ -1,15 +1,20 @@
 class Ship {
-    constructor(length, health, sunk) {
+    constructor(length) {
         this.length = length;
-        this.health = health;
-        this.sunk = sunk;
+        this.damage = 0;
+        this.sunk = false;
     }
 
     hit() {
-        this.health += 1;
+        this.damage += 1;
+        return this.damage;
     }
 
     isSunk() {
-        this.health == this.length ? this.sunk = true : this.sunk = false;
+        this.damage == this.length ? this.sunk = true : this.sunk = false;
     }
 }
+
+const test = new Ship(4)
+test.hit()
+console.log(test)
