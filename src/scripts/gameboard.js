@@ -1,5 +1,7 @@
 import {Ship} from './main';
 
+const ship1 = new Ship(4);
+
 export class Gameboard {
     constructor() {
         this.board = createBoard();
@@ -9,17 +11,51 @@ export class Gameboard {
         this.ships = [];
     }
     // Current code is for Tests
-    placeShip(x, dir) {
+    placeShip(cord, dir) {
         const directions = ["up", "left", "right", "down"];
-        if (x < 1 || x > 10 || !directions.includes(dir)) {
+        if (   cord[0] < 1 
+            || cord[1] < 1
+            || cord[0] > 10
+            || cord[1] > 10
+            || cord.length !== 2
+            || !directions.includes(dir)) {
             return;
         }
-        // Place ship at x position laid out towards ( dir )
-        // e.g place ship at 4 [ up, left, right, down ]
 
-        // If down or up then take y and increment or decrement by 1 of each ship.length
-        // if right or left then take y and increment or decrement the value by 1 of each ship.length
-        const position = [x, dir];
+        for (let i = 1; i <= ship1.length; i++) {
+            switch(dir) {
+                case 'up': if (cord[0] - ship1.length < 1) {
+                                break;
+                            } else {
+                                const square = document.querySelector(`.${cord[0] - i, cord[1]}`);
+                                square.classList.add("ship");
+                                break;
+                            }
+                case 'left': if (cord[1] - ship1.length < 1) {
+                                break;
+                            } else {
+                                const square = document.querySelector(`.${cord[0], cord[1] - i}`);
+                                square.classList.add("ship");
+                                break;
+                            }
+                case 'right': if (cord[1] + ship1.length < 1) {
+                                break;
+                            } else {
+                                const square = document.querySelector(`.${cord[0], cord[1] + i}`);
+                                square.classList.add("ship");
+                                break;
+                            }
+                case 'down': if (cord[0] + ship1.length > 10) {
+                                break;
+                            } else {
+                                const square = document.querySelector(`.${cord[0] + i, cord[1]}`);
+                                square.classList.add("ship");
+                                break;
+                            }
+            }
+        }
+
+        const position = [`${cord}`, dir];
         return position;
     }
     // Current code is for Tests
@@ -30,10 +66,8 @@ export class Gameboard {
         // This assumes we already have a ship in place on the board
         // Which means we will have to test if the ( cord ) matches an existing ship on [x, y] cordinates
         // Need a way to track Gameboard and Ships on said Gameboard.
-
-
         
-        if(this.placeShip(4, "up").every(cordMatch)) {
+        if(this.placeShip([1, 2], "up").every(cordMatch)) {
             return "hit";
         }
 
@@ -70,3 +104,6 @@ export function createBoard() {
         y++
     }
 }
+
+const testing = new Gameboard();
+console.log(testing.placeShip([1, 2], "up"));
