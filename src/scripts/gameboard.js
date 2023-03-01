@@ -1,7 +1,5 @@
 import {Ship} from './main';
 
-const ship1 = new Ship(4);
-
 export class Gameboard {
     constructor() {
         this.board = createBoard();
@@ -11,7 +9,7 @@ export class Gameboard {
         this.ships = [];
     }
     // Current code is for Tests
-    placeShip(cord, dir) {
+    placeShip(cord, dir, ship) {
         const directions = ["up", "left", "right", "down"];
         if (   cord[0] < 1 
             || cord[1] < 1
@@ -22,33 +20,33 @@ export class Gameboard {
             return;
         }
 
-        for (let i = 1; i <= ship1.length; i++) {
+        for (let i = 1; i <= ship.length; i++) {
             switch(dir) {
-                case 'up': if (cord[0] - ship1.length < 1) {
+                case 'up': if (cord[0] - ship.length < 1) {
                                 break;
                             } else {
-                                const square = document.querySelector(`.${cord[0] - i, cord[1]}`);
+                                const square = document.querySelector(`.p${cord[0] - i}-${cord[1]}`);
                                 square.classList.add("ship");
                                 break;
                             }
-                case 'left': if (cord[1] - ship1.length < 1) {
+                case 'left': if (cord[1] - ship.length < 1) {
                                 break;
                             } else {
-                                const square = document.querySelector(`.${cord[0], cord[1] - i}`);
+                                const square = document.querySelector(`.p${cord[0]}-${cord[1] - i}`);
                                 square.classList.add("ship");
                                 break;
                             }
-                case 'right': if (cord[1] + ship1.length < 1) {
+                case 'right': if (cord[1] + ship.length < 1) {
                                 break;
                             } else {
-                                const square = document.querySelector(`.${cord[0], cord[1] + i}`);
+                                const square = document.querySelector(`.p${cord[0]}-${cord[1] + i}`);
                                 square.classList.add("ship");
                                 break;
                             }
-                case 'down': if (cord[0] + ship1.length > 10) {
+                case 'down': if (cord[0] + ship.length > 10) {
                                 break;
                             } else {
-                                const square = document.querySelector(`.${cord[0] + i, cord[1]}`);
+                                const square = document.querySelector(`.p${cord[0] + i}-${cord[1]}`);
                                 square.classList.add("ship");
                                 break;
                             }
@@ -90,20 +88,17 @@ export function createBoard() {
 
     while(y <= 10 && x <= 10) {
         if(x == 10 && y == 10) {
-            boardArr.push([x, y])
+            boardArr.push(`${x}-${y}`)
             return boardArr;
         }
 
         if (y == 10) {
-            boardArr.push([x, y])
+            boardArr.push(`${x}-${y}`)
             x++
             y = 1;
         }
 
-        boardArr.push([x, y]);
+        boardArr.push(`${x}-${y}`);
         y++
     }
 }
-
-const testing = new Gameboard();
-console.log(testing.placeShip([1, 2], "up"));

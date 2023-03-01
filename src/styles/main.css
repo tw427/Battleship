@@ -8,6 +8,10 @@ body {
     width: 100vw;
 }
 
+.ship {
+    background-color: lightgreen;
+}
+
 #player-board,
 #cpu-board {
     display: grid;
@@ -18,7 +22,6 @@ body {
 
 #player-board {
     grid-column: 2 / 3;
-
 }
 
 .playerSq,

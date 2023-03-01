@@ -1,5 +1,6 @@
 import "../styles/main.css";
-import {createBoard} from "./gameboard"
+import {createBoard, Gameboard} from "./gameboard"
+import {Ship} from "./main"
 
 const body = document.querySelector("body");
 
@@ -24,8 +25,8 @@ class DomMethods {
         newBoard.forEach(cord => {
             const playerSquare = document.createElement("div");
             const cpuSquare = document.createElement("div");
-            playerSquare.classList.add(`${cord}`, "playerSq");
-            cpuSquare.classList.add(`${cord}`, "cpuSq");
+            playerSquare.classList.add(`p${cord}`, "playerSq");
+            cpuSquare.classList.add(`c${cord}`, "cpuSq");
             playerBox.appendChild(playerSquare);
             cpuBox.appendChild(cpuSquare);
         });
@@ -39,5 +40,9 @@ class DomMethods {
 
 const dom = new DomMethods();
 dom.createDOM();
+
+const ship1 = new Ship(4);
+const testing = new Gameboard();
+testing.placeShip([5, 5], "up", ship1);
 
 
