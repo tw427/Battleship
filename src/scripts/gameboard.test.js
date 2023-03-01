@@ -4,7 +4,7 @@ describe("Gameboard class", () => {
     const testGB = new Gameboard();
 
     test("correct position and direction", () => {
-        expect(testGB.placeShip([1, 2], "up")).toEqual(["1,2", "up"]);
+        expect(testGB.placeShip([1, 2], "up", [])).toEqual(["1,2", "up"]);
     });
 
     test("hit on correct cordinates", () => {
@@ -13,7 +13,7 @@ describe("Gameboard class", () => {
 
     test("miss increment on attack miss", () => {
         // Incorrect cordinates to simulate a miss
-        testGB.receiveAttack(["2,1", "down"]);
+        testGB.receiveAttack(["2,1", "down", []]);
 
         expect(testGB.miss).toEqual(1);
     });

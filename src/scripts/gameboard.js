@@ -6,7 +6,7 @@ export class Gameboard {
         // Fill this.ships with ships from placeShip
         this.ships = [];
     }
-    // Current code is for Tests
+
     placeShip(cord, dir, ship) {
         const directions = ["up", "left", "right", "down"];
         if (   cord[0] < 1 
@@ -51,6 +51,7 @@ export class Gameboard {
             }
         }
 
+        // For test
         const position = [`${cord}`, dir];
         return position;
     }
@@ -63,7 +64,7 @@ export class Gameboard {
         // Which means we will have to test if the ( cord ) matches an existing ship on [x, y] cordinates
         // Need a way to track Gameboard and Ships on said Gameboard.
         
-        if(this.placeShip([1, 2], "up").every(cordMatch)) {
+        if(this.placeShip([1, 2], "up", []).every(cordMatch)) {
             return "hit";
         }
 
