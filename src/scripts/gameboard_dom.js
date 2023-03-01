@@ -43,8 +43,8 @@ dom.createDOM();
 
 const ship1 = new Ship(4);
 const testing = new Gameboard();
-testing.placeShip([5, 5], "up", ship1);
 
+testing.placeShip([5, 5], "up", ship1);
 testing.placeShip([7, 5], "left", ship1);
 
 
