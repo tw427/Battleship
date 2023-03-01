@@ -1,5 +1,3 @@
-import {Ship} from './main';
-
 export class Gameboard {
     constructor() {
         this.board = createBoard();
@@ -20,7 +18,7 @@ export class Gameboard {
             return;
         }
 
-        for (let i = 1; i <= ship.length; i++) {
+        for (let i = 0; i < ship.length; i++) {
             switch(dir) {
                 case 'up': if (cord[0] - ship.length < 1) {
                                 break;
