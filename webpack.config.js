@@ -4,13 +4,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     main: "./src/scripts/main.js",
-    gameboard: "./src/scripts/gameboard.js"
+    gameboard: "./src/scripts/gameboard.js",
+    gameboard_dom: "./src/scripts/gameboard_dom.js"
   },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
+devtool: 'inline-source-map',
 plugins: [
     new HtmlWebpackPlugin({
       title: 'New Page',
@@ -24,17 +26,4 @@ module: {
       },
     ],
   },
-resolve: {
-    alias: {
-      config$: './configs/app-config.js',
-      react: './vendor/react-master',
-    },
-    extensions: ['.js', '.jsx'],
-    modules: [
-      'node_modules',
-      'bower_components',
-      'shared',
-      '/shared/vendor/modules',
-    ],
-  },
-};
+}

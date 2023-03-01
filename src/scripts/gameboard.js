@@ -2,34 +2,11 @@ import {Ship} from './main';
 
 export class Gameboard {
     constructor() {
-        this.board = this.createBoard();
+        this.board = createBoard();
         this.hit = 0;
         this.miss = 0;
         // Fill this.ships with ships from placeShip
         this.ships = [];
-    }
-
-    createBoard() {
-        let boardArr = [];
-
-        let x = 1;
-        let y = 1;
-
-        while(y <= 10 && x <= 10) {
-            if(x == 10 && y == 10) {
-                boardArr.push([x, y])
-                return boardArr;
-            }
-
-            if (y == 10) {
-                boardArr.push([x, y])
-                x++
-                y = 1;
-            }
-
-            boardArr.push([x, y]);
-            y++
-        }
     }
     // Current code is for Tests
     placeShip(x, dir) {
@@ -71,6 +48,25 @@ export class Gameboard {
     }
 }
 
-const test = new Gameboard();
+export function createBoard() {
+    let boardArr = [];
 
-console.log(test)
+    let x = 1;
+    let y = 1;
+
+    while(y <= 10 && x <= 10) {
+        if(x == 10 && y == 10) {
+            boardArr.push([x, y])
+            return boardArr;
+        }
+
+        if (y == 10) {
+            boardArr.push([x, y])
+            x++
+            y = 1;
+        }
+
+        boardArr.push([x, y]);
+        y++
+    }
+}
