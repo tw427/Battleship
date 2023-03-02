@@ -25,8 +25,11 @@ class DomMethods {
         newBoard.forEach(cord => {
             const playerSquare = document.createElement("div");
             const cpuSquare = document.createElement("div");
-            playerSquare.classList.add(`p${cord}`, "playerSq");
-            cpuSquare.classList.add(`c${cord}`, "cpuSq");
+
+            playerSquare.classList.add(`player-${cord}`, "playerSq");
+            cpuSquare.classList.add(`cpu-${cord}`, "cpuSq");
+
+            boardEvent([playerSquare, cpuSquare]);
             playerBox.appendChild(playerSquare);
             cpuBox.appendChild(cpuSquare);
         });
@@ -38,13 +41,25 @@ class DomMethods {
     }
 }
 
+function boardEvent(squares) {
+        squares.forEach(sq => {
+            sq.addEventListener("click", () => {
+
+            });
+        });
+}
+
 const dom = new DomMethods();
 dom.createDOM();
 
 const ship1 = new Ship(4);
-const testing = new Gameboard();
+const playerBoard = new Gameboard("player");
+const cpuBoard = new Gameboard("cpu");
 
-testing.placeShip([5, 5], "up", ship1);
-testing.placeShip([7, 5], "left", ship1);
+playerBoard.placeShip([5, 5], "up", ship1);
+playerBoard.placeShip([7, 5], "left", ship1);
+
+cpuBoard.placeShip([5, 5], "up", ship1);
+cpuBoard.placeShip([7, 5], "left", ship1);
 
 

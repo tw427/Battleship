@@ -1,6 +1,7 @@
 class Ship {
-    constructor(length) {
+    constructor(length, id) {
         this.length = length;
+        this.id = id;
         this.damage = 0;
         this.sunk = false;
         // Add cordinates when placeShip gets called on Ship object
