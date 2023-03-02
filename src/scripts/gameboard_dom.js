@@ -49,8 +49,10 @@ function boardEvent(squares) {
         });
 }
 
-const dom = new DomMethods();
-dom.createDOM();
+if(!body.childNodes < 2) {
+    const dom = new DomMethods();
+    dom.createDOM();
+}
 
 const ship1 = new Ship(4);
 const playerBoard = new Gameboard("player");
