@@ -2,11 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: "development",
   entry: {
-    main: "./src/scripts/main.js",
-    gameboard: "./src/scripts/gameboard.js",
-    gameboard_dom: "./src/scripts/gameboard_dom.js",
-    game: "./src/scripts/game.js"
+    main: "./src/scripts/main.js"
   },
   output: {
     filename: '[name].bundle.js',
@@ -16,7 +14,7 @@ module.exports = {
 devtool: 'inline-source-map',
 plugins: [
     new HtmlWebpackPlugin({
-      title: 'New Page',
+      title: 'Battleship',
     }),
   ],
 module: {

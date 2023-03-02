@@ -1,10 +1,10 @@
-import "../styles/main.css";
-import {createBoard} from "./gameboard.js"
-import {boardEvent} from "./game.js"
+// import "../styles/main.css";
+import {createBoard} from "./gameboard"
+import {boardEvent} from "./game";
 
 const body = document.querySelector("body");
 
-class DomMethods {
+export class DomMethods {
     constructor() {}
 
     gameContainers() {
@@ -39,11 +39,6 @@ class DomMethods {
         this.gameContainers();
         this.gameboardSquares();
     }
-}
-
-if(!body.childNodes < 2) {
-    const dom = new DomMethods();
-    dom.createDOM();
 }
 
 

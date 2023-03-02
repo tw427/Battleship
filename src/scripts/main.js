@@ -1,4 +1,8 @@
-class Ship {
+import "../styles/main.css";
+import { DomMethods } from "./gameboard_dom";
+import {Gameboard} from "./gameboard"
+
+export class Ship {
     constructor(length, id) {
         this.length = length;
         this.id = id;
@@ -20,6 +24,15 @@ class Ship {
     }
 };
 
-module.exports = {
-    Ship,
-}
+const dom = new DomMethods();
+dom.createDOM();
+
+const ship1 = new Ship(4);
+const playerBoard = new Gameboard("player");
+const cpuBoard = new Gameboard("cpu");
+
+playerBoard.placeShip([5, 5], "up", ship1);
+playerBoard.placeShip([7, 5], "left", ship1);
+
+cpuBoard.placeShip([5, 5], "up", ship1);
+cpuBoard.placeShip([7, 5], "left", ship1);
