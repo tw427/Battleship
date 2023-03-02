@@ -51,9 +51,7 @@ export class Gameboard {
             }
         }
 
-        // For test
-        const position = [`${cord}`, dir];
-        return position;
+        return true;
     }
     // Current code is for Tests
     receiveAttack(cord) {

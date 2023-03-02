@@ -8,7 +8,7 @@ class Ship {
         this.cords = [];
     }
     
-    hit() {
+    hit(cord) {
         this.damage += 1;
         return this.damage;
     }

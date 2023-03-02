@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1677644338804" clover="3.2.0">
-  <project timestamp="1677644338804" name="All files">
-    <metrics statements="49" coveredstatements="27" conditionals="30" coveredconditionals="17" methods="6" coveredmethods="5" elements="85" coveredelements="49" complexity="0" loc="49" ncloc="49" packages="1" files="1" classes="1"/>
+<coverage generated="1677723728464" clover="3.2.0">
+  <project timestamp="1677723728464" name="All files">
+    <metrics statements="49" coveredstatements="21" conditionals="30" coveredconditionals="15" methods="6" coveredmethods="3" elements="85" coveredelements="39" complexity="0" loc="49" ncloc="49" packages="1" files="1" classes="1"/>
     <file name="gameboard.js" path="/home/tony/repos/Battleship/src/scripts/gameboard.js">
-      <metrics statements="49" coveredstatements="27" conditionals="30" coveredconditionals="17" methods="6" coveredmethods="5"/>
+      <metrics statements="49" coveredstatements="21" conditionals="30" coveredconditionals="15" methods="6" coveredmethods="3"/>
       <line num="3" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
       <line num="5" count="1" type="stmt"/>
       <line num="7" count="1" type="stmt"/>
-      <line num="11" count="3" type="stmt"/>
-      <line num="12" count="3" type="cond" truecount="7" falsecount="1"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="12" count="1" type="cond" truecount="7" falsecount="1"/>
       <line num="18" count="0" type="stmt"/>
-      <line num="21" count="3" type="stmt"/>
+      <line num="21" count="1" type="stmt"/>
       <line num="22" count="0" type="cond" truecount="0" falsecount="4"/>
       <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
       <line num="24" count="0" type="stmt"/>
@@ -33,26 +33,26 @@
       <line num="47" count="0" type="stmt"/>
       <line num="48" count="0" type="stmt"/>
       <line num="49" count="0" type="stmt"/>
-      <line num="55" count="3" type="stmt"/>
-      <line num="56" count="3" type="stmt"/>
-      <line num="60" count="3" type="stmt"/>
-      <line num="67" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="68" count="1" type="stmt"/>
-      <line num="71" count="1" type="stmt"/>
-      <line num="72" count="1" type="stmt"/>
+      <line num="54" count="1" type="stmt"/>
+      <line num="58" count="0" type="stmt"/>
+      <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="66" count="0" type="stmt"/>
+      <line num="69" count="0" type="stmt"/>
+      <line num="70" count="0" type="stmt"/>
+      <line num="81" count="1" type="stmt"/>
       <line num="83" count="1" type="stmt"/>
-      <line num="85" count="1" type="stmt"/>
-      <line num="86" count="1" type="stmt"/>
-      <line num="88" count="1" type="cond" truecount="2" falsecount="0"/>
-      <line num="89" count="91" type="cond" truecount="4" falsecount="0"/>
-      <line num="90" count="1" type="stmt"/>
-      <line num="91" count="1" type="stmt"/>
-      <line num="94" count="90" type="cond" truecount="2" falsecount="0"/>
+      <line num="84" count="1" type="stmt"/>
+      <line num="86" count="1" type="cond" truecount="2" falsecount="0"/>
+      <line num="87" count="91" type="cond" truecount="4" falsecount="0"/>
+      <line num="88" count="1" type="stmt"/>
+      <line num="89" count="1" type="stmt"/>
+      <line num="92" count="90" type="cond" truecount="2" falsecount="0"/>
+      <line num="93" count="9" type="stmt"/>
+      <line num="94" count="9" type="stmt"/>
       <line num="95" count="9" type="stmt"/>
-      <line num="96" count="9" type="stmt"/>
-      <line num="97" count="9" type="stmt"/>
-      <line num="100" count="90" type="stmt"/>
-      <line num="101" count="90" type="stmt"/>
+      <line num="98" count="90" type="stmt"/>
+      <line num="99" count="90" type="stmt"/>
+      <line num="102" count="0" type="stmt"/>
     </file>
   </project>
 </coverage>
