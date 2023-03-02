@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">43.13% </span>
+                <span class="strong">45.09% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>22/51</span>
+                <span class='fraction'>23/51</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">44.89% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/49</span>
+                <span class='fraction'>22/49</span>
             </div>
         
             
@@ -164,9 +164,9 @@
 <a name='L99'></a><a href='#L99'>99</a>
 <a name='L100'></a><a href='#L100'>100</a>
 <a name='L101'></a><a href='#L101'>101</a>
-<a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L102'></a><a href='#L102'>102</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -265,10 +265,9 @@
 <span class="cline-any cline-yes">90x</span>
 <span class="cline-any cline-yes">90x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export class Gameboard {
-    constructor() {
+    constructor(id) {
+        this.id = id;
         this.board = createBoard();
         this.hit = 0;
         this.miss = 0;
@@ -292,28 +291,28 @@
                 case 'up': <span class="cstat-no" title="statement not covered" >if (cord[0] - ship.length &lt; 1) {</span>
 <span class="cstat-no" title="statement not covered" >                                break;</span>
                             } else {
-                                const square = <span class="cstat-no" title="statement not covered" >document.querySelector(`.p${cord[0] - i}-${cord[1]}`);</span>
+                                const square = <span class="cstat-no" title="statement not covered" >document.querySelector(`.${this.id}-${cord[0] - i}-${cord[1]}`);</span>
 <span class="cstat-no" title="statement not covered" >                                square.classList.add("ship");</span>
 <span class="cstat-no" title="statement not covered" >                                break;</span>
                             }
                 case 'left': <span class="cstat-no" title="statement not covered" >if (cord[1] - ship.length &lt; 1) {</span>
 <span class="cstat-no" title="statement not covered" >                                break;</span>
                             } else {
-                                const square = <span class="cstat-no" title="statement not covered" >document.querySelector(`.p${cord[0]}-${cord[1] - i}`);</span>
+                                const square = <span class="cstat-no" title="statement not covered" >document.querySelector(`.${this.id}-${cord[0]}-${cord[1] - i}`);</span>
 <span class="cstat-no" title="statement not covered" >                                square.classList.add("ship");</span>
 <span class="cstat-no" title="statement not covered" >                                break;</span>
                             }
                 case 'right': <span class="cstat-no" title="statement not covered" >if (cord[1] + ship.length &lt; 1) {</span>
 <span class="cstat-no" title="statement not covered" >                                break;</span>
                             } else {
-                                const square = <span class="cstat-no" title="statement not covered" >document.querySelector(`.p${cord[0]}-${cord[1] + i}`);</span>
+                                const square = <span class="cstat-no" title="statement not covered" >document.querySelector(`.${this.id}-${cord[0]}-${cord[1] + i}`);</span>
 <span class="cstat-no" title="statement not covered" >                                square.classList.add("ship");</span>
 <span class="cstat-no" title="statement not covered" >                                break;</span>
                             }
                 case 'down': <span class="cstat-no" title="statement not covered" >if (cord[0] + ship.length &gt; 10) {</span>
 <span class="cstat-no" title="statement not covered" >                                break;</span>
                             } else {
-                                const square = <span class="cstat-no" title="statement not covered" >document.querySelector(`.p${cord[0] + i}-${cord[1]}`);</span>
+                                const square = <span class="cstat-no" title="statement not covered" >document.querySelector(`.${this.id}-${cord[0] + i}-${cord[1]}`);</span>
 <span class="cstat-no" title="statement not covered" >                                square.classList.add("ship");</span>
 <span class="cstat-no" title="statement not covered" >                                break;</span>
                             }
@@ -367,8 +366,6 @@ export function createBoard() {
         boardArr.push(`${x}-${y}`);
         y++
     }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    return boardArr;</span>
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -376,7 +373,7 @@ export function createBoard() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-02T02:22:08.454Z
+                at 2023-03-02T08:47:31.066Z
             </div>
         <script src="prettify.js"></script>
         <script>

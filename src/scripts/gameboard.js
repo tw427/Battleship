@@ -1,11 +1,11 @@
 export class Gameboard {
-    constructor(id) {
+    constructor(id, ships) {
         this.id = id;
+        this.ships = ships;
         this.board = createBoard();
-        this.hit = 0;
-        this.miss = 0;
+        // this.hit = 0;
+        // this.miss = 0;
         // Fill this.ships with ships from placeShip
-        this.ships = [];
     }
 
     placeShip(cord, dir, ship) {
@@ -25,6 +25,7 @@ export class Gameboard {
                                 break;
                             } else {
                                 const square = document.querySelector(`.${this.id}-${cord[0] - i}-${cord[1]}`);
+                                ship.cords.push([cord[0] - i, cord[1]]);
                                 square.classList.add("ship");
                                 break;
                             }
@@ -32,6 +33,7 @@ export class Gameboard {
                                 break;
                             } else {
                                 const square = document.querySelector(`.${this.id}-${cord[0]}-${cord[1] - i}`);
+                                ship.cords.push([cord[0], cord[1] - i]);
                                 square.classList.add("ship");
                                 break;
                             }
@@ -39,6 +41,7 @@ export class Gameboard {
                                 break;
                             } else {
                                 const square = document.querySelector(`.${this.id}-${cord[0]}-${cord[1] + i}`);
+                                ship.cords.push([cord[0], cord[1] + i]);
                                 square.classList.add("ship");
                                 break;
                             }
@@ -46,6 +49,7 @@ export class Gameboard {
                                 break;
                             } else {
                                 const square = document.querySelector(`.${this.id}-${cord[0] + i}-${cord[1]}`);
+                                ship.cords.push([cord[0] + i, cord[1]]);
                                 square.classList.add("ship");
                                 break;
                             }
