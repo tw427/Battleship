@@ -1,6 +1,6 @@
 import "../styles/main.css";
-import {createBoard, Gameboard} from "./gameboard"
-import {Ship} from "./main"
+import {createBoard} from "./gameboard.js"
+import {boardEvent} from "./game.js"
 
 const body = document.querySelector("body");
 
@@ -41,27 +41,9 @@ class DomMethods {
     }
 }
 
-function boardEvent(squares) {
-        squares.forEach(sq => {
-            sq.addEventListener("click", () => {
-
-            });
-        });
-}
-
 if(!body.childNodes < 2) {
     const dom = new DomMethods();
     dom.createDOM();
 }
-
-const ship1 = new Ship(4);
-const playerBoard = new Gameboard("player");
-const cpuBoard = new Gameboard("cpu");
-
-playerBoard.placeShip([5, 5], "up", ship1);
-playerBoard.placeShip([7, 5], "left", ship1);
-
-cpuBoard.placeShip([5, 5], "up", ship1);
-cpuBoard.placeShip([7, 5], "left", ship1);
 
 

@@ -5,7 +5,8 @@ module.exports = {
   entry: {
     main: "./src/scripts/main.js",
     gameboard: "./src/scripts/gameboard.js",
-    gameboard_dom: "./src/scripts/gameboard_dom.js"
+    gameboard_dom: "./src/scripts/gameboard_dom.js",
+    game: "./src/scripts/game.js"
   },
   output: {
     filename: '[name].bundle.js',
