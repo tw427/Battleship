@@ -1,5 +1,5 @@
 import "../styles/main.css";
-import { DomMethods } from "./gameboard_dom";
+import { DomMethods } from "./gamedom";
 import {Gameboard} from "./gameboard"
 
 export class Ship {
