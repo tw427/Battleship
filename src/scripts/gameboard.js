@@ -24,7 +24,7 @@ export class Gameboard {
                 case 'up': if (cord[0] - ship.length < 1) {
                                 break;
                             } else {
-                                const square = document.querySelector(`.${this.id}-${cord[0] - i}-${cord[1]}`);
+                                const square = document.querySelector(`.${this.id}Sq[data-x="${cord[0] - i}"][data-y="${cord[1]}"]`);
                                 ship.cords.push([cord[0] - i, cord[1]]);
                                 square.classList.add("ship");
                                 break;
@@ -32,7 +32,7 @@ export class Gameboard {
                 case 'left': if (cord[1] - ship.length < 1) {
                                 break;
                             } else {
-                                const square = document.querySelector(`.${this.id}-${cord[0]}-${cord[1] - i}`);
+                                const square = document.querySelector(`.${this.id}Sq[data-x="${cord[0]}"][data-y="${cord[1] - i}"]`);
                                 ship.cords.push([cord[0], cord[1] - i]);
                                 square.classList.add("ship");
                                 break;
@@ -40,7 +40,7 @@ export class Gameboard {
                 case 'right': if (cord[1] + ship.length < 1) {
                                 break;
                             } else {
-                                const square = document.querySelector(`.${this.id}-${cord[0]}-${cord[1] + i}`);
+                                const square = document.querySelector(`.${this.id}Sq[data-x="${cord[0]}"][data-y="${cord[1] + i}"]`);
                                 ship.cords.push([cord[0], cord[1] + i]);
                                 square.classList.add("ship");
                                 break;
@@ -48,7 +48,7 @@ export class Gameboard {
                 case 'down': if (cord[0] + ship.length > 10) {
                                 break;
                             } else {
-                                const square = document.querySelector(`.${this.id}-${cord[0] + i}-${cord[1]}`);
+                                const square = document.querySelector(`.${this.id}Sq[data-x="${cord[0] + i}"][data-y="${cord[1]}"]`);
                                 ship.cords.push([cord[0] + i, cord[1]]);
                                 square.classList.add("ship");
                                 break;

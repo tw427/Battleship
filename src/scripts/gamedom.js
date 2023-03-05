@@ -25,9 +25,14 @@ export class DomMethods {
         newBoard.forEach(cord => {
             const playerSquare = document.createElement("div");
             const cpuSquare = document.createElement("div");
+            const splitCords = cord.split("-");
 
-            playerSquare.classList.add(`player-${cord}`, "playerSq");
-            cpuSquare.classList.add(`cpu-${cord}`, "cpuSq");
+            playerSquare.setAttribute("data-x", splitCords[0]);
+            playerSquare.setAttribute("data-y", splitCords[1]);
+            cpuSquare.setAttribute("data-x", splitCords[0]);
+            cpuSquare.setAttribute("data-y", splitCords[1]);
+            playerSquare.classList.add("playerSq");
+            cpuSquare.classList.add("cpuSq");
 
             boardEvent([cpuSquare, playerSquare]);
             playerBox.appendChild(playerSquare);

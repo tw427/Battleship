@@ -42,4 +42,4 @@ playerBoard.placeShip([7, 5], "left", ship2);
 cpuBoard.placeShip([5, 3], "up", ship3);
 cpuBoard.placeShip([9, 5], "left", ship4);
 
-getShips()
+// getShips()

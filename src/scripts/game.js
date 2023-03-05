@@ -1,4 +1,3 @@
-import { playerBoard, cpuBoard } from "./main";
 import { ship1, ship2, ship3, ship4 } from "./main";
 
 export function boardEvent(square) {
@@ -19,11 +18,10 @@ export function getShips() {
 
 export function hitEvent(square) {
     const ships = [ship3, ship4];
-    const sqCord = square.className.split(" ")[0].split("-");
 
     ships.forEach(ship => {
         ship.cords.some(cord => {
-            if(cord[0] == Number(sqCord[1]) && cord[1] == Number(sqCord[2])) {
+            if(cord[0] == square.dataset.x && cord[1] == square.dataset.y) {
                 console.log(cord)
                 console.log(ship)
                 console.log(square)
