@@ -18,8 +18,18 @@ export function getShips() {
 }
 
 export function hitEvent(square) {
-        console.log(square)
-        console.log(cpuBoard)
+    const ships = [ship3, ship4];
+    const sqCord = square.className.split(" ")[0].split("-");
+
+    ships.forEach(ship => {
+        ship.cords.some(cord => {
+            if(cord[0] == Number(sqCord[1]) && cord[1] == Number(sqCord[2])) {
+                console.log(cord)
+                console.log(ship)
+                console.log(square)
+            }
+        })
+    })
 }
 
 // Will probably create a game loop by... Having the AI function be run with a setTimeout after
