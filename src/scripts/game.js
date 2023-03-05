@@ -30,6 +30,9 @@ export function hitEvent(square) {
             }
         })
     })
+
+    // Try running ship.hit() to see if if ship damage increases
+    // if it does this could give us the ability to sink ships
 }
 
 // Will probably create a game loop by... Having the AI function be run with a setTimeout after
