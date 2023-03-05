@@ -1,5 +1,3 @@
-import { boardEvent } from "./game";
-
 export class Gameboard {
     constructor(id, ships) {
         this.id = id;
@@ -27,7 +25,6 @@ export class Gameboard {
                                 break;
                             } else {
                                 const square = document.querySelector(`.${this.id}-${cord[0] - i}-${cord[1]}`);
-                                boardEvent(square);
                                 ship.cords.push([cord[0] - i, cord[1]]);
                                 square.classList.add("ship");
                                 break;
@@ -36,7 +33,6 @@ export class Gameboard {
                                 break;
                             } else {
                                 const square = document.querySelector(`.${this.id}-${cord[0]}-${cord[1] - i}`);
-                                boardEvent(square);
                                 ship.cords.push([cord[0], cord[1] - i]);
                                 square.classList.add("ship");
                                 break;
@@ -45,7 +41,6 @@ export class Gameboard {
                                 break;
                             } else {
                                 const square = document.querySelector(`.${this.id}-${cord[0]}-${cord[1] + i}`);
-                                boardEvent(square);
                                 ship.cords.push([cord[0], cord[1] + i]);
                                 square.classList.add("ship");
                                 break;
@@ -54,7 +49,6 @@ export class Gameboard {
                                 break;
                             } else {
                                 const square = document.querySelector(`.${this.id}-${cord[0] + i}-${cord[1]}`);
-                                boardEvent(square);
                                 ship.cords.push([cord[0] + i, cord[1]]);
                                 square.classList.add("ship");
                                 break;

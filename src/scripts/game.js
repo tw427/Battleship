@@ -1,9 +1,25 @@
 import { playerBoard, cpuBoard } from "./main";
+import { ship1, ship2, ship3, ship4 } from "./main";
 
 export function boardEvent(square) {
-        square.addEventListener("click", () => {
-                console.log(cpuBoard)
-        });
+    square.forEach(sq => {
+        sq.addEventListener("click", () => {
+            if (!sq.classList.contains("ship")) {
+                    console.log("miss")
+            } else if (["ship", "cpuSq"].every(className => sq.classList.contains(className))) {
+                hitEvent(sq)
+            }
+        })
+    })
+}
+
+export function getShips() {
+    console.log(ship1, ship2, ship3, ship4)
+}
+
+export function hitEvent(square) {
+        console.log(square)
+        console.log(cpuBoard)
 }
 
 // Will probably create a game loop by... Having the AI function be run with a setTimeout after
