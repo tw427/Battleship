@@ -29,7 +29,7 @@ export class DomMethods {
             playerSquare.classList.add(`player-${cord}`, "playerSq");
             cpuSquare.classList.add(`cpu-${cord}`, "cpuSq");
 
-            boardEvent([playerSquare, cpuSquare]);
+            // boardEvent(cpuSquare);
             playerBox.appendChild(playerSquare);
             cpuBox.appendChild(cpuSquare);
         });

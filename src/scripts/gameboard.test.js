@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const {Gameboard} = require('./gameboard');
 
 describe("Gameboard class", () => {

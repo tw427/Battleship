@@ -1,6 +1,6 @@
 import "../styles/main.css";
 import { DomMethods } from "./gamedom";
-import {Gameboard} from "./gameboard"
+import { Gameboard } from "./gameboard"
 
 export class Ship {
     constructor(length, id) {
