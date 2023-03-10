@@ -7,7 +7,6 @@ export class Gameboard {
         this.board = createBoard();
         this.miss = 0;
         this.hit = 0;
-        // Fill this.ships with ships from placeShip
     }
 
     placeShip(cord, dir, ship) {
@@ -60,20 +59,26 @@ export class Gameboard {
 
         return true;
     }
-    // Current code is for Tests
+
     receiveAttack(square) {
         const ships = [ship3, ship4];
 
         ships.forEach(ship => {
             ship.cords.some(cord => {
                 if(cord[0] == square.dataset.x && cord[1] == square.dataset.y) {
-                    this.hit++
                     ship.hit()
+                    square.id = "hit";
+                    ship.sunk == false ? this.hit++ : null;
                     console.log(ship)
+                    console.log(this)
                 }
-                this.miss++;
             })
         })
+    }
+
+    missedAttack(square) {
+        square.classList.add("miss")
+        this.miss++;
     }
 
     allSunk() {

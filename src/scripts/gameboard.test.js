@@ -6,6 +6,7 @@ const {Gameboard} = require('./gameboard');
 
 describe("Gameboard class", () => {
     const testGB = new Gameboard();
+    // const square = document.querySelector("[data-x='2'][data-y='3'].cpuSq");
 
     test("correct position and direction", () => {
         expect(testGB.placeShip([1, 2], "up", [])).toEqual(true);
@@ -14,10 +15,9 @@ describe("Gameboard class", () => {
     test("Gameboard is 10x10", () => {
         expect(testGB.board.length).toEqual(100);
     });
-    // Rewrite receiveAttack tests once receiveAttack is finished
 
     test.skip("hit on correct cordinates", () => {
-        expect(testGB.receiveAttack(["1,2", "up"])).toEqual("hit");
+        expect(testGB.receiveAttack(square)).toEqual("hit");
     });
 
     test.skip("miss increment on attack miss", () => {

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/16</span>
+                <span class='fraction'>2/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/8</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">13.33% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/15</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
@@ -97,15 +97,7 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a>
-<a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">100x</span>
@@ -120,19 +112,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -147,7 +126,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ship1, ship2, ship3, ship4 } from "./main";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {cpuBoard} from "./main"
 &nbsp;
 export function boardEvent(square) {
     square.forEach(sq =&gt; {
@@ -155,33 +139,25 @@ export function boardEvent(square) {
 <span class="cstat-no" title="statement not covered" >            if (!sq.classList.contains("ship")) {</span>
 <span class="cstat-no" title="statement not covered" >                    console.log("miss")</span>
             } else <span class="cstat-no" title="statement not covered" >if (["ship", "cpuSq"].every(<span class="fstat-no" title="function not covered" >cl</span>assName =&gt; <span class="cstat-no" title="statement not covered" >sq.classList.contains(className))</span>) {</span>
-<span class="cstat-no" title="statement not covered" >                hitEvent(sq)</span>
+<span class="cstat-no" title="statement not covered" >                cpuBoard.receiveAttack(sq)</span>
             }
+&nbsp;
         })
     })
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >getShips(</span>) {
-<span class="cstat-no" title="statement not covered" >    console.log(ship1, ship2, ship3, ship4)</span>
-}
+// export function hitEvent(square) {
+//     const ships = [ship3, ship4];
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >hitEvent(</span>square) {
-    const ships = <span class="cstat-no" title="statement not covered" >[ship3, ship4];</span>
-    const sqCord = <span class="cstat-no" title="statement not covered" >square.className.split(" ")[0].split("-");</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    ships.forEach(<span class="fstat-no" title="function not covered" >sh</span>ip =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        ship.cords.some(<span class="fstat-no" title="function not covered" >co</span>rd =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            if(cord[0] == Number(sqCord[1]) &amp;&amp; cord[1] == Number(sqCord[2])) {</span>
-<span class="cstat-no" title="statement not covered" >                console.log(cord)</span>
-<span class="cstat-no" title="statement not covered" >                console.log(ship)</span>
-<span class="cstat-no" title="statement not covered" >                console.log(square)</span>
-            }
-        })
-    })
-&nbsp;
-    // Try running ship.hit() to see if if ship damage increases
-    // if it does this could give us the ability to sink ships
-}
+//     ships.forEach(ship =&gt; {
+//         ship.cords.some(cord =&gt; {
+//             if(cord[0] == square.dataset.x &amp;&amp; cord[1] == square.dataset.y) {
+//                 ship.hit()
+//                 console.log(ship)
+//             }
+//         })
+//     })
+// }
 &nbsp;
 // Will probably create a game loop by... Having the AI function be run with a setTimeout after
 // the player has attacked... We could display a message of " AI is attacking... " and it will run
@@ -196,7 +172,7 @@ export function <span class="fstat-no" title="function not covered" >hitEvent(</
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-05T07:10:17.542Z
+                at 2023-03-10T05:10:31.355Z
             </div>
         <script src="prettify.js"></script>
         <script>

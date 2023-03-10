@@ -12,6 +12,14 @@ body {
     background-color: lightgreen;
 }
 
+.miss {
+    background-color: pink;
+}
+
+#hit {
+    background-color: rgb(255, 107, 107);
+}
+
 #player-board,
 #cpu-board {
     display: grid;
