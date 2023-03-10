@@ -1,4 +1,4 @@
-import { ship1, ship2, ship3, ship4 } from "./main";
+import {cpuBoard} from "./main"
 
 export function boardEvent(square) {
     square.forEach(sq => {
@@ -6,31 +6,25 @@ export function boardEvent(square) {
             if (!sq.classList.contains("ship")) {
                     console.log("miss")
             } else if (["ship", "cpuSq"].every(className => sq.classList.contains(className))) {
-                hitEvent(sq)
+                cpuBoard.receiveAttack(sq)
             }
+
         })
     })
 }
 
-export function getShips() {
-    console.log(ship1, ship2, ship3, ship4)
-}
+// export function hitEvent(square) {
+//     const ships = [ship3, ship4];
 
-export function hitEvent(square) {
-    const ships = [ship3, ship4];
-
-    ships.forEach(ship => {
-        ship.cords.some(cord => {
-            if(cord[0] == square.dataset.x && cord[1] == square.dataset.y) {
-                ship.hit()
-                console.log(ship)
-            }
-        })
-    })
-
-    // Try running ship.hit() to see if if ship damage increases
-    // if it does this could give us the ability to sink ships
-}
+//     ships.forEach(ship => {
+//         ship.cords.some(cord => {
+//             if(cord[0] == square.dataset.x && cord[1] == square.dataset.y) {
+//                 ship.hit()
+//                 console.log(ship)
+//             }
+//         })
+//     })
+// }
 
 // Will probably create a game loop by... Having the AI function be run with a setTimeout after
 // the player has attacked... We could display a message of " AI is attacking... " and it will run

@@ -1,10 +1,12 @@
+import { ship3, ship4 } from "./main";
+
 export class Gameboard {
     constructor(id, ships) {
         this.id = id;
         this.ships = ships;
         this.board = createBoard();
-        // this.hit = 0;
-        // this.miss = 0;
+        this.miss = 0;
+        this.hit = 0;
         // Fill this.ships with ships from placeShip
     }
 
@@ -59,20 +61,19 @@ export class Gameboard {
         return true;
     }
     // Current code is for Tests
-    receiveAttack(cord) {
-        const cordMatch = (val) => cord.includes(val);
+    receiveAttack(square) {
+        const ships = [ship3, ship4];
 
-        // Will have to change these parameters to an actual attack
-        // This assumes we already have a ship in place on the board
-        // Which means we will have to test if the ( cord ) matches an existing ship on [x, y] cordinates
-        // Need a way to track Gameboard and Ships on said Gameboard.
-        
-        if(this.placeShip([1, 2], "up", []).every(cordMatch)) {
-            return "hit";
-        }
-
-        this.miss += 1;
-        return "miss";
+        ships.forEach(ship => {
+            ship.cords.some(cord => {
+                if(cord[0] == square.dataset.x && cord[1] == square.dataset.y) {
+                    this.hit++
+                    ship.hit()
+                    console.log(ship)
+                }
+                this.miss++;
+            })
+        })
     }
 
     allSunk() {
