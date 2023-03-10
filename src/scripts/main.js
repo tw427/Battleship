@@ -15,7 +15,7 @@ export class Ship {
     }
     
     hit(cord) {
-        this.damage += 1;
+        this.damage == this.length ? this.isSunk() : this.damage += 1;
         return this.damage;
     }
     

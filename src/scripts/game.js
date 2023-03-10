@@ -22,9 +22,8 @@ export function hitEvent(square) {
     ships.forEach(ship => {
         ship.cords.some(cord => {
             if(cord[0] == square.dataset.x && cord[1] == square.dataset.y) {
-                console.log(cord)
+                ship.hit()
                 console.log(ship)
-                console.log(square)
             }
         })
     })
