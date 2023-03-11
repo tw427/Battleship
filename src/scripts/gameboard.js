@@ -62,18 +62,24 @@ export class Gameboard {
 
     receiveAttack(square) {
         const ships = [ship3, ship4];
-
-        ships.forEach(ship => {
-            ship.cords.some(cord => {
-                if(cord[0] == square.dataset.x && cord[1] == square.dataset.y) {
-                    ship.hit()
-                    square.id = "hit";
-                    ship.sunk == false ? this.hit++ : null;
-                    console.log(ship)
-                    console.log(this)
-                }
+        
+        if (!ships.every(ship => ship.sunk == true)) {
+            ships.forEach(ship => {
+                ship.cords.some(cord => {
+                    if(cord[0] == square.dataset.x && cord[1] == square.dataset.y) {
+                        ship.hit()
+                        square.id = "hit";
+                        ship.sunk == false ? this.hit++ : null;
+                        console.log(ship)
+                        console.log(this)
+                    }
+                })
             })
-        })
+        }
+
+        if (ships.every(ship => ship.sunk == true)) {
+            this.allSunk();
+        }
     }
 
     missedAttack(square) {
@@ -82,9 +88,7 @@ export class Gameboard {
     }
 
     allSunk() {
-        // Report if all ships have been sunk on any given player's board
-        // Players will each initiate a Gameboard class for their own side to place ships
-        // Will check the this.ships array and if all objects return sunk to be true
+        console.log("All ships have been sunk!")
     }
 }
 

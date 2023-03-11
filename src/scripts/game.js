@@ -6,9 +6,8 @@ export function boardEvent(square) {
             if (!sq.classList.contains("ship")) {
                 cpuBoard.missedAttack(sq)
             } else if (["ship", "cpuSq"].every(className => sq.classList.contains(className))) {
-                cpuBoard.receiveAttack(sq)
+                    cpuBoard.receiveAttack(sq)
             }
-
         })
     })
 }
