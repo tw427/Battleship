@@ -1,5 +1,3 @@
-import { ship3, ship4 } from "./main";
-
 export class Gameboard {
     constructor(id, ships) {
         this.id = id;
@@ -61,11 +59,10 @@ export class Gameboard {
     }
 
     receiveAttack(square) {
-        const ships = [ship3, ship4];
         const message = document.querySelector(".cpu-message")
         
-        if (!ships.every(ship => ship.sunk == true)) {
-            ships.forEach(ship => {
+        if (!this.ships.every(ship => ship.sunk == true)) {
+            this.ships.forEach(ship => {
                 ship.cords.some(cord => {
                     if(cord[0] == square.dataset.x && cord[1] == square.dataset.y) {
                         ship.hit()
@@ -77,7 +74,7 @@ export class Gameboard {
             })
         }
 
-        if (ships.every(ship => ship.sunk == true)) {
+        if (this.ships.every(ship => ship.sunk == true)) {
             message.innerText = "All ships have been sunk!";
         }
 
