@@ -70,25 +70,22 @@ export class Gameboard {
                         ship.hit()
                         square.id = "hit";
                         ship.sunk == false ? this.hit++ : null;
-                        console.log(ship)
-                        console.log(this)
+                        // console.log(ship)
+                        // console.log(this)
                     }
                 })
             })
         }
 
         if (ships.every(ship => ship.sunk == true)) {
-            this.allSunk();
+            const message = document.querySelector(".sunk-message")
+            message.classList.remove("message-hidden")
         }
     }
 
     missedAttack(square) {
         square.classList.add("miss")
         this.miss++;
-    }
-
-    allSunk() {
-        console.log("All ships have been sunk!")
     }
 }
 

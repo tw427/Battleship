@@ -40,9 +40,17 @@ export class DomMethods {
         });
     }
 
+    allSunkMessage() {
+        const message = document.createElement("div");
+        message.classList.add("message-hidden", "sunk-message")
+        message.innerText = "All ships have been sunk!";
+        body.appendChild(message)
+    }
+
     createDOM = () => {
         this.gameContainers();
         this.gameboardSquares();
+        this.allSunkMessage();
     }
 }
 
