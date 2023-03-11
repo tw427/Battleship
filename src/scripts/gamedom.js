@@ -40,17 +40,18 @@ export class DomMethods {
         });
     }
 
-    allSunkMessage() {
-        const message = document.createElement("div");
-        message.classList.add("message-hidden", "sunk-message")
-        message.innerText = "All ships have been sunk!";
-        body.appendChild(message)
+    boardMessages() {
+        const cpuMessage = document.createElement("div");
+        const plyrMessage = document.createElement("div");
+        cpuMessage.classList.add("cpu-message")
+        plyrMessage.classList.add("plyr-message")
+        body.append(cpuMessage, plyrMessage);
     }
 
     createDOM = () => {
         this.gameContainers();
         this.gameboardSquares();
-        this.allSunkMessage();
+        this.boardMessages();
     }
 }
 

@@ -62,6 +62,7 @@ export class Gameboard {
 
     receiveAttack(square) {
         const ships = [ship3, ship4];
+        const message = document.querySelector(".cpu-message")
         
         if (!ships.every(ship => ship.sunk == true)) {
             ships.forEach(ship => {
@@ -70,20 +71,24 @@ export class Gameboard {
                         ship.hit()
                         square.id = "hit";
                         ship.sunk == false ? this.hit++ : null;
-                        // console.log(ship)
-                        // console.log(this)
+                        message.innerText == "Hit!" ? null : message.innerText = "Hit!"
                     }
                 })
             })
         }
 
         if (ships.every(ship => ship.sunk == true)) {
-            const message = document.querySelector(".sunk-message")
-            message.classList.remove("message-hidden")
+            message.innerText = "All ships have been sunk!";
         }
+
+        // Make a reset game button to appear
+        // Add a message to the side of the board that has won saying "${user} wins!"
     }
 
     missedAttack(square) {
+        const message = document.querySelector(".cpu-message")
+        message.innerText == "Miss" ? null : message.innerText = "Miss"
+
         square.classList.add("miss")
         this.miss++;
     }

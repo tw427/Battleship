@@ -24,11 +24,8 @@ body {
     background-color: rgb(255, 107, 107);
 }
 
-div.message-hidden {
-    display: none;
-}
-
-.sunk-message {
+.cpu-message,
+.plyr-message {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,13 +37,21 @@ div.message-hidden {
     font-weight: 600;
 }
 
+.cpu-message {
+    grid-column: 1 / 2;
+}
+
+.plyr-message {
+    grid-column: 2 / 3;
+}
+
 #player-board,
 #cpu-board {
     display: grid;
     grid-row: 3 / -1;
     grid-template: repeat(10, 1fr) / repeat(10, 1fr);
-    width: 55%;
-    height: 55%;
+    width: 50%;
+    height: 65%;
 }
 
 #player-board {
