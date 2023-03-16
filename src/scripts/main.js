@@ -1,4 +1,5 @@
 import "../styles/main.css";
+import { startGame } from "./game";
 
 export class Ship {
     constructor(length) {

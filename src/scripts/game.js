@@ -4,7 +4,7 @@ import { Gameboard } from "./gameboard"
 const cpuBoard = new Gameboard("cpu", randomizeShips());
 const playerBoard = new Gameboard("player", randomizeShips());
 
-function startGame() {
+export function startGame() {
     const dom = new DomMethods();
     dom.createDOM();
 
@@ -15,9 +15,11 @@ function startGame() {
     cpuBoard.placeShip([9, 5], "left", ship4);
 }
 
-function randomizeShips() {
+export function randomizeShips() {
     const directions = ["up", "left", "right", "down"];
     const randomShip = new Ship(Math.floor(Math.random() * 4) + 2)
+
+    return Math.floor(Math.random() * 4) + 2
 
     // ^ Create random ship to use in placeShip(cord, dir, ship)
     // Retrieve random direction, and then depending on the direction...
