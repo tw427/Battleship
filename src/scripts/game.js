@@ -17,15 +17,10 @@ export function startGame() {
     // playerBoard.placeShip([5, 5], "up", ship1);
     // playerBoard.placeShip([7, 5], "left", ship2);
     
-    cpuBoard.placeShip([5, 3], "up", ship);
+    cpuBoard.placeShip(coord, dir, ship);
     console.log(ship)
     console.log(cpuBoard)
     // cpuBoard.placeShip([9, 5], "left", ship4);
-    randomCoord(dir, ship);
-    randomCoord(dir, ship);
-    randomCoord(dir, ship);
-    randomCoord(dir, ship);
-    randomCoord(dir, ship);
 }
 
 export function randomShip() {
@@ -42,13 +37,34 @@ export function randomShip() {
     // place the ship if non of our ships coordinates intercept with the existing ships from cpuBoard.ships
 }
 
+function randomMinMaxNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
 export function randomCoord(dir, ship) {
-    // if (dir == "up" || dir == "down") {
+    let randUpLeft = randomMinMaxNum(ship.length, 10);
+    let randDownRight = randomMinMaxNum(1, (10 - ship.length));
+    let randAny = randomMinMaxNum(1, 10);
+    let coords;
 
-    // }
-    let randomX = Math.floor(Math.random() * (10 - ship.length + 1)) + ship.length
+    switch(dir) {
+        case "up": 
+                coords = [randUpLeft, randAny]
+                break;
+        case "left":
+            coords = [randAny, randUpLeft]
+            break;
+        case "down":
+            coords = [randDownRight, randAny]
+            break;
+        case "right":
+            coords = [randAny, randDownRight]
+            break;
+    }
 
-    console.log(ship.length, randomX)
+    console.log(coords)
+
+    return coords;
 }
 
 export function randomDir() {
@@ -57,6 +73,7 @@ export function randomDir() {
 
     return directions[randomNum];
 }
+
 
 export function boardEvent(square) {
         square.addEventListener("click", () => {
