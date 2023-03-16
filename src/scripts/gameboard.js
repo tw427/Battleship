@@ -8,50 +8,30 @@ export class Gameboard {
     }
 
     placeShip(cord, dir, ship) {
-        const directions = ["up", "left", "right", "down"];
-        if (   cord[0] < 1 
-            || cord[1] < 1
-            || cord[0] > 10
-            || cord[1] > 10
-            || cord.length !== 2
-            || !directions.includes(dir)) {
-            return;
-        }
-
         for (let i = 0; i < ship.length; i++) {
+            let square;
+            
             switch(dir) {
-                case 'up': if (cord[0] - ship.length < 1) {
-                                break;
-                            } else {
-                                const square = document.querySelector(`.${this.id}Sq[data-x="${cord[0] - i}"][data-y="${cord[1]}"]`);
-                                ship.cords.push([cord[0] - i, cord[1]]);
-                                square.classList.add("ship");
-                                break;
-                            }
-                case 'left': if (cord[1] - ship.length < 1) {
-                                break;
-                            } else {
-                                const square = document.querySelector(`.${this.id}Sq[data-x="${cord[0]}"][data-y="${cord[1] - i}"]`);
-                                ship.cords.push([cord[0], cord[1] - i]);
-                                square.classList.add("ship");
-                                break;
-                            }
-                case 'right': if (cord[1] + ship.length < 1) {
-                                break;
-                            } else {
-                                const square = document.querySelector(`.${this.id}Sq[data-x="${cord[0]}"][data-y="${cord[1] + i}"]`);
-                                ship.cords.push([cord[0], cord[1] + i]);
-                                square.classList.add("ship");
-                                break;
-                            }
-                case 'down': if (cord[0] + ship.length > 10) {
-                                break;
-                            } else {
-                                const square = document.querySelector(`.${this.id}Sq[data-x="${cord[0] + i}"][data-y="${cord[1]}"]`);
-                                ship.cords.push([cord[0] + i, cord[1]]);
-                                square.classList.add("ship");
-                                break;
-                            }
+                case 'up': 
+                        square = document.querySelector(`.${this.id}Sq[data-x="${cord[0] - i}"][data-y="${cord[1]}"]`);
+                        ship.cords.push([cord[0] - i, cord[1]]);
+                        square.classList.add("ship");
+                        break;
+                case 'left':
+                        square = document.querySelector(`.${this.id}Sq[data-x="${cord[0]}"][data-y="${cord[1] - i}"]`);
+                        ship.cords.push([cord[0], cord[1] - i]);
+                        square.classList.add("ship");
+                        break;
+                case 'right':
+                        square = document.querySelector(`.${this.id}Sq[data-x="${cord[0]}"][data-y="${cord[1] + i}"]`);
+                        ship.cords.push([cord[0], cord[1] + i]);
+                        square.classList.add("ship");
+                        break;
+                case 'down':
+                        square = document.querySelector(`.${this.id}Sq[data-x="${cord[0] + i}"][data-y="${cord[1]}"]`);
+                        ship.cords.push([cord[0] + i, cord[1]]);
+                        square.classList.add("ship");
+                        break;
             }
         }
 

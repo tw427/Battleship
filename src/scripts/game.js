@@ -55,7 +55,7 @@ export function randomCoord(dir, ship) {
             break;
     }
 
-    console.log(coords)
+    console.log(coords, dir, ship.length)
 
     return coords;
 }
