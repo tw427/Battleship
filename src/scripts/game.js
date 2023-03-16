@@ -1,23 +1,34 @@
 import { Ship } from "./main"
 import { DomMethods } from "./gamedom";
 import { Gameboard } from "./gameboard"
-const cpuBoard = new Gameboard("cpu", randomizeShips());
-const playerBoard = new Gameboard("player", randomizeShips());
+const cpuBoard = new Gameboard("cpu", []);
+const playerBoard = new Gameboard("player", []);
 
 export function startGame() {
     const dom = new DomMethods();
     dom.createDOM();
 
-    playerBoard.placeShip([5, 5], "up", ship1);
-    playerBoard.placeShip([7, 5], "left", ship2);
+    console.log(cpuBoard, playerBoard)
+    randomizeShips()
+    randomizeShips()
+    randomizeShips()
+    randomizeShips()
+    randomizeShips()
+    randomizeShips()
+    randomizeShips()
 
-    cpuBoard.placeShip([5, 3], "up", ship3);
-    cpuBoard.placeShip([9, 5], "left", ship4);
+    // playerBoard.placeShip([5, 5], "up", ship1);
+    // playerBoard.placeShip([7, 5], "left", ship2);
+
+    // cpuBoard.placeShip([5, 3], "up", ship3);
+    // cpuBoard.placeShip([9, 5], "left", ship4);
 }
 
 export function randomizeShips() {
     const directions = ["up", "left", "right", "down"];
-    const randomShip = new Ship(Math.floor(Math.random() * 4) + 2)
+    const randomShip = new Ship(Math.floor(Math.random() * 3) + 2)
+
+    console.log(randomShip)
 
     return Math.floor(Math.random() * 4) + 2
 

@@ -20,3 +20,5 @@ export class Ship {
         return this.sunk;
     }
 };
+
+startGame();
