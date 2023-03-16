@@ -1,20 +1,24 @@
 import { Ship } from "./main"
 import { DomMethods } from "./gamedom";
 import { Gameboard } from "./gameboard"
+const cpuBoard = new Gameboard("cpu", []);
 
 export function startGame() {
     const ship = randomShip();
     const dir = randomDir();
     const coord = randomCoord(dir, ship);
-
-    const cpuBoard = new Gameboard("cpu", [ship]);
-    const playerBoard = new Gameboard("player", []);
     const dom = new DomMethods();
-    dom.createDOM();
     
-    cpuBoard.placeShip(coord, dir, ship);
+    const playerBoard = new Gameboard("player", []);
+    
     console.log(ship)
     console.log(cpuBoard)
+    cpuBoard.ships.push(ship);
+    dom.createDOM();
+    cpuBoard.placeShip(coord, dir, ship);
+
+    // Have to fix a bug where DOM is being initialized before we place ships
+    // Causing event listeners in boardEvent() function to label ships existing post-DOM to be labeled as a ' non ship ' div
 }
 
 export function randomShip() {
@@ -69,7 +73,6 @@ export function boardEvent(square) {
             if (square.classList.contains("ship")) {
                 cpuBoard.receiveAttack(square)
             }
-
             cpuBoard.missedAttack(square)
         })
 }
