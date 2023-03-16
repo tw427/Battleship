@@ -11,27 +11,16 @@ export function startGame() {
     const playerBoard = new Gameboard("player", []);
     const dom = new DomMethods();
     dom.createDOM();
-
-    
-    
-    // playerBoard.placeShip([5, 5], "up", ship1);
-    // playerBoard.placeShip([7, 5], "left", ship2);
     
     cpuBoard.placeShip(coord, dir, ship);
     console.log(ship)
     console.log(cpuBoard)
-    // cpuBoard.placeShip([9, 5], "left", ship4);
 }
 
 export function randomShip() {
     const randomShip = new Ship(Math.floor(Math.random() * 3) + 2)
 
     return randomShip
-
-    // ^ Create random ship to use in placeShip(cord, dir, ship)
-    // Retrieve random direction, and then depending on the direction...
-    // Set random coordinate if direction is up or down to have a 1 - (10 - randomShip.length) X value so it can fit and whatever 1 - 10 Y value
-    // Vice versa if the direction is right or left 1 - 10 X and 1 - (ship length) for Y
 
     // Now we have all our random variables for placeShip(coord, dir, ship)
     // place the ship if non of our ships coordinates intercept with the existing ships from cpuBoard.ships
