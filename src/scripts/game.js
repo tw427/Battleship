@@ -9,18 +9,19 @@ export function startGame() {
     dom.createDOM();
 
     console.log(cpuBoard, playerBoard)
-    randomizeShips()
-    randomizeShips()
-    randomizeShips()
-    randomizeShips()
-    randomizeShips()
-    randomizeShips()
-    randomizeShips()
+
+    console.log(randomizeShips())
+    // randomizeShips()
+    // randomizeShips()
+    // randomizeShips()
+    // randomizeShips()
+    // randomizeShips()
+    // randomizeShips()
 
     // playerBoard.placeShip([5, 5], "up", ship1);
     // playerBoard.placeShip([7, 5], "left", ship2);
 
-    // cpuBoard.placeShip([5, 3], "up", ship3);
+    cpuBoard.placeShip([5, 3], "up", randomizeShips());
     // cpuBoard.placeShip([9, 5], "left", ship4);
 }
 
@@ -28,9 +29,7 @@ export function randomizeShips() {
     const directions = ["up", "left", "right", "down"];
     const randomShip = new Ship(Math.floor(Math.random() * 3) + 2)
 
-    console.log(randomShip)
-
-    return Math.floor(Math.random() * 4) + 2
+    return randomShip
 
     // ^ Create random ship to use in placeShip(cord, dir, ship)
     // Retrieve random direction, and then depending on the direction...
