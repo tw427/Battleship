@@ -1,32 +1,34 @@
 import { Ship } from "./main"
 import { DomMethods } from "./gamedom";
 import { Gameboard } from "./gameboard"
-const cpuBoard = new Gameboard("cpu", []);
-const playerBoard = new Gameboard("player", []);
 
 export function startGame() {
+    const ship = randomShip();
+    const dir = randomDir();
+    const coord = randomCoord(dir, ship);
+
+    const cpuBoard = new Gameboard("cpu", [ship]);
+    const playerBoard = new Gameboard("player", []);
     const dom = new DomMethods();
     dom.createDOM();
 
-    console.log(cpuBoard, playerBoard)
-
-    console.log(randomizeShips())
-    // randomizeShips()
-    // randomizeShips()
-    // randomizeShips()
-    // randomizeShips()
-    // randomizeShips()
-    // randomizeShips()
-
+    
+    
     // playerBoard.placeShip([5, 5], "up", ship1);
     // playerBoard.placeShip([7, 5], "left", ship2);
-
-    cpuBoard.placeShip([5, 3], "up", randomizeShips());
+    
+    cpuBoard.placeShip([5, 3], "up", ship);
+    console.log(ship)
+    console.log(cpuBoard)
     // cpuBoard.placeShip([9, 5], "left", ship4);
+    randomCoord(dir, ship);
+    randomCoord(dir, ship);
+    randomCoord(dir, ship);
+    randomCoord(dir, ship);
+    randomCoord(dir, ship);
 }
 
-export function randomizeShips() {
-    const directions = ["up", "left", "right", "down"];
+export function randomShip() {
     const randomShip = new Ship(Math.floor(Math.random() * 3) + 2)
 
     return randomShip
@@ -38,6 +40,22 @@ export function randomizeShips() {
 
     // Now we have all our random variables for placeShip(coord, dir, ship)
     // place the ship if non of our ships coordinates intercept with the existing ships from cpuBoard.ships
+}
+
+export function randomCoord(dir, ship) {
+    // if (dir == "up" || dir == "down") {
+
+    // }
+    let randomX = Math.floor(Math.random() * (10 - ship.length + 1)) + ship.length
+
+    console.log(ship.length, randomX)
+}
+
+export function randomDir() {
+    const directions = ["up", "left", "right", "down"];
+    const randomNum = Math.floor(Math.random() * 4);
+
+    return directions[randomNum];
 }
 
 export function boardEvent(square) {

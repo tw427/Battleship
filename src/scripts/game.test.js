@@ -2,10 +2,10 @@
  * @jest-environment jsdom
  */
 
-const {randomizeShips} = require('./game')
+const {randomShip} = require('./game')
 
 describe("randomize ships function", () => {
     test("return value of randomizeShips", () => {
-        expect(randomizeShips()).toBeLessThan(4)
+        expect(randomShip().length).toBeLessThan(4)
     })
 })

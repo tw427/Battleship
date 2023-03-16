@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1678951178619" clover="3.2.0">
-  <project timestamp="1678951178620" name="All files">
+<coverage generated="1678952000388" clover="3.2.0">
+  <project timestamp="1678952000388" name="All files">
     <metrics statements="118" coveredstatements="28" conditionals="46" coveredconditionals="8" methods="22" coveredmethods="4" elements="186" coveredelements="40" complexity="0" loc="118" ncloc="118" packages="1" files="4" classes="4"/>
     <file name="game.js" path="/home/tony/repos/Battleship/src/scripts/game.js">
       <metrics statements="15" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="1"/>
@@ -9,16 +9,16 @@
       <line num="8" count="0" type="stmt"/>
       <line num="9" count="0" type="stmt"/>
       <line num="11" count="0" type="stmt"/>
-      <line num="12" count="0" type="stmt"/>
-      <line num="14" count="0" type="stmt"/>
-      <line num="15" count="0" type="stmt"/>
-      <line num="19" count="3" type="stmt"/>
-      <line num="20" count="3" type="stmt"/>
-      <line num="22" count="3" type="stmt"/>
-      <line num="34" count="0" type="stmt"/>
-      <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="36" count="0" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="18" count="0" type="stmt"/>
+      <line num="19" count="0" type="stmt"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="25" count="1" type="stmt"/>
+      <line num="27" count="1" type="stmt"/>
       <line num="39" count="0" type="stmt"/>
+      <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="41" count="0" type="stmt"/>
+      <line num="44" count="0" type="stmt"/>
     </file>
     <file name="gameboard.js" path="/home/tony/repos/Battleship/src/scripts/gameboard.js">
       <metrics statements="63" coveredstatements="18" conditionals="42" coveredconditionals="8" methods="9" coveredmethods="2"/>
@@ -122,10 +122,10 @@
     </file>
     <file name="main.js" path="/home/tony/repos/Battleship/src/scripts/main.js">
       <metrics statements="9" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="1"/>
-      <line num="6" count="3" type="stmt"/>
-      <line num="7" count="3" type="stmt"/>
-      <line num="8" count="3" type="stmt"/>
-      <line num="9" count="3" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="9" count="1" type="stmt"/>
       <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
       <line num="14" count="0" type="stmt"/>
       <line num="18" count="0" type="stmt"/>
