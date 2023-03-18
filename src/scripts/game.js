@@ -10,8 +10,6 @@ export function startGame() {
     dom.createDOM();
     cpuShips();
     dom.gameboardEvents(cpuBoard);
-    // Have to fix a bug where DOM is being initialized before we place ships
-    // Causing event listeners in boardEvent() function to label ships existing post-DOM to be labeled as a ' non ship ' div
 }
 
 function cpuShips() {
@@ -20,7 +18,6 @@ function cpuShips() {
         const dir = randomDir();
         const coord = randomCoord(dir, ship);
         const shipCoords = getShipCoords(coord, dir, ship);
-
 
         if (matchingCoord(shipCoords)) {
             continue;
