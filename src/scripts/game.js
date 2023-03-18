@@ -1,13 +1,15 @@
 import { Ship } from "./main"
 import { DomMethods } from "./gamedom";
 import { Gameboard } from "./gameboard"
-const cpuBoard = new Gameboard("cpu", []);
+export const cpuBoard = new Gameboard("cpu", []);
 const playerBoard = new Gameboard("player", []);
 
 export function startGame() {
     const dom = new DomMethods();
+
     dom.createDOM();
     cpuShips();
+    dom.gameboardEvents(cpuBoard);
     // Have to fix a bug where DOM is being initialized before we place ships
     // Causing event listeners in boardEvent() function to label ships existing post-DOM to be labeled as a ' non ship ' div
 }
@@ -21,8 +23,6 @@ function cpuShips() {
 
 
         if (matchingCoord(shipCoords)) {
-            console.log(shipCoords)
-            console.log("Match!")
             continue;
         } else {
             cpuBoard.placeShip(coord, dir, ship);

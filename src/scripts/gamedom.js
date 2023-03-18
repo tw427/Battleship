@@ -1,6 +1,6 @@
 // import "../styles/main.css";
 import {createBoard} from "./gameboard"
-import {boardEvent} from "./game";
+import {cpuBoard} from "./game";
 
 const body = document.querySelector("body");
 
@@ -37,6 +37,21 @@ export class DomMethods {
             playerBox.appendChild(playerSquare);
             cpuBox.appendChild(cpuSquare);
         });
+    }
+
+    gameboardEvents() {
+        const cpuSquares = document.querySelectorAll(".cpuSq");
+        console.log(cpuSquares)
+        cpuSquares.forEach(square => {
+            square.addEventListener("click", () => {
+                if (square.classList.contains("ship")) {
+                    console.log("YooHoo")
+                    cpuBoard.receiveAttack(square)
+                } else {
+                    cpuBoard.missedAttack(square)
+                }
+            })
+        })
     }
 
     boardMessages() {
