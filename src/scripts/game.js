@@ -13,15 +13,50 @@ export function startGame() {
 }
 
 function cpuShips() {
-    for (let i = 0; i < 4; i++) {
+    while(cpuBoard.ships.length < 4) {
         const ship = new Ship(Math.floor(Math.random() * 3) + 2);
         const dir = randomDir();
         const coord = randomCoord(dir, ship);
-        cpuBoard.ships.push(ship);
+        const shipCoords = getShipCoords(coord, dir, ship);
+
+        cpuBoard.ships.forEach(placedShip => {
+            if (placedShip.cords.some(coordinate => matchingCoord(shipCoords, coordinate))) {
+                console.log("HIT!")
+                return;
+            }
+        })
+        
         cpuBoard.placeShip(coord, dir, ship);
-        console.log(ship)
+        cpuBoard.ships.push(ship);
     }
-    console.log(cpuBoard.ships[0].cords)
+    // console.log(cpuBoard.ships[0].cords)
+}
+
+function matchingCoord(coordArr, coord) {
+    return coordArr.some(shipCord => shipCord[0] == coord[0] && shipCord[1] == coord[1])
+}
+
+function getShipCoords(cord, dir, ship) {
+    let coordArr = [];
+
+    for (let i = 0; i < ship.length; i++) {
+        switch(dir) {
+            case 'up': 
+                    coordArr.push([cord[0] - i, cord[1]]);
+                    break;
+            case 'left':
+                    coordArr.push([cord[0], cord[1] - i]);
+                    break;
+            case 'right':
+                    coordArr.push([cord[0], cord[1] + i]);
+                    break;
+            case 'down':
+                    coordArr.push([cord[0] + i, cord[1]]);
+                    break;
+        }
+    }
+
+    return coordArr;
 }
 
 function randomMinMaxNum(min, max) {
