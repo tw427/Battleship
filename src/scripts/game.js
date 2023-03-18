@@ -21,12 +21,13 @@ function cpuShips() {
 
 
         if (matchingCoord(shipCoords)) {
-            console.log("Match")
+            console.log(shipCoords)
+            console.log("Match!")
+            continue;
+        } else {
+            cpuBoard.placeShip(coord, dir, ship);
+            cpuBoard.ships.push(ship);
         }
-
-        cpuBoard.placeShip(coord, dir, ship);
-        cpuBoard.ships.push(ship);
-        // console.log("Still HITTING")
     }
 }
 
