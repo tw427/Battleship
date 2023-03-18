@@ -19,21 +19,23 @@ function cpuShips() {
         const coord = randomCoord(dir, ship);
         const shipCoords = getShipCoords(coord, dir, ship);
 
-        cpuBoard.ships.forEach(placedShip => {
-            if (placedShip.cords.some(coordinate => matchingCoord(shipCoords, coordinate))) {
-                console.log("HIT!")
-                return;
-            }
-        })
-        
+
+        if (matchingCoord(shipCoords)) {
+            console.log("Match")
+        }
+
         cpuBoard.placeShip(coord, dir, ship);
         cpuBoard.ships.push(ship);
+        // console.log("Still HITTING")
     }
-    // console.log(cpuBoard.ships[0].cords)
 }
 
-function matchingCoord(coordArr, coord) {
-    return coordArr.some(shipCord => shipCord[0] == coord[0] && shipCord[1] == coord[1])
+function matchingCoord(coordArr) {
+    for (let placedShip of cpuBoard.ships) {
+        if (placedShip.cords.some(coord => coordArr.some(shipCord => shipCord[0] == coord[0] && shipCord[1] == coord[1]))) {
+            return true;
+        }
+    }
 }
 
 function getShipCoords(cord, dir, ship) {
