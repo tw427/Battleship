@@ -2,32 +2,26 @@ import { Ship } from "./main"
 import { DomMethods } from "./gamedom";
 import { Gameboard } from "./gameboard"
 const cpuBoard = new Gameboard("cpu", []);
+const playerBoard = new Gameboard("player", []);
 
 export function startGame() {
-    const ship = randomShip();
-    const dir = randomDir();
-    const coord = randomCoord(dir, ship);
     const dom = new DomMethods();
-    
-    const playerBoard = new Gameboard("player", []);
-    
-    console.log(ship)
-    console.log(cpuBoard)
-    cpuBoard.ships.push(ship);
     dom.createDOM();
-    cpuBoard.placeShip(coord, dir, ship);
-
+    cpuShips();
     // Have to fix a bug where DOM is being initialized before we place ships
     // Causing event listeners in boardEvent() function to label ships existing post-DOM to be labeled as a ' non ship ' div
 }
 
-export function randomShip() {
-    const randomShip = new Ship(Math.floor(Math.random() * 3) + 2)
-
-    return randomShip
-
-    // Now we have all our random variables for placeShip(coord, dir, ship)
-    // place the ship if non of our ships coordinates intercept with the existing ships from cpuBoard.ships
+function cpuShips() {
+    for (let i = 0; i < 4; i++) {
+        const ship = new Ship(Math.floor(Math.random() * 3) + 2);
+        const dir = randomDir();
+        const coord = randomCoord(dir, ship);
+        cpuBoard.ships.push(ship);
+        cpuBoard.placeShip(coord, dir, ship);
+        console.log(ship)
+    }
+    console.log(cpuBoard.ships[0].cords)
 }
 
 function randomMinMaxNum(min, max) {
@@ -42,8 +36,8 @@ export function randomCoord(dir, ship) {
 
     switch(dir) {
         case "up": 
-                coords = [randUpLeft, randAny]
-                break;
+            coords = [randUpLeft, randAny]
+            break;
         case "left":
             coords = [randAny, randUpLeft]
             break;

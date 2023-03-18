@@ -34,7 +34,6 @@ export class DomMethods {
             playerSquare.classList.add("playerSq");
             cpuSquare.classList.add("cpuSq");
 
-            boardEvent(cpuSquare);
             playerBox.appendChild(playerSquare);
             cpuBox.appendChild(cpuSquare);
         });
