@@ -64,7 +64,25 @@ export class DomMethods {
         const btn = document.createElement("button");
         btn.textContent = "Reset"
         btn.setAttribute("id", "reset");
+
+        btn.addEventListener("click", () => {
+            this.resetDOM()
+            resetGame()
+        })
         body.appendChild(btn)
+    }
+
+    resetDOM() {
+        const cpuSquares = document.querySelectorAll(".cpuSq");
+        const cpuMessage = document.querySelector(".cpu-message");
+
+        cpuMessage.textContent = ""
+
+        cpuSquares.forEach(square => {
+            square.classList.contains("miss") ? square.classList.remove("miss") : square.id = "";
+            square.classList.contains("ship") ? square.classList.remove("ship") : null;
+        });
+    
     }
 
     createDOM = () => {

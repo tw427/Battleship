@@ -12,6 +12,15 @@ export function startGame() {
     dom.gameboardEvents(cpuBoard);
 }
 
+export function resetGame() {
+    cpuBoard.hit = 0;
+    cpuBoard.miss = 0;
+    cpuBoard.ships = [];
+    console.log(cpuBoard)
+    cpuShips();
+    
+}
+
 function cpuShips() {
     while(cpuBoard.ships.length < 4) {
         const ship = new Ship(Math.floor(Math.random() * 3) + 2);
