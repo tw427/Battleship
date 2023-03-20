@@ -1,6 +1,6 @@
 // import "../styles/main.css";
 import {createBoard} from "./gameboard"
-import {cpuBoard} from "./game";
+import {cpuBoard, resetGame} from "./game";
 
 const body = document.querySelector("body");
 
@@ -41,11 +41,9 @@ export class DomMethods {
 
     gameboardEvents() {
         const cpuSquares = document.querySelectorAll(".cpuSq");
-        console.log(cpuSquares)
         cpuSquares.forEach(square => {
             square.addEventListener("click", () => {
                 if (square.classList.contains("ship")) {
-                    console.log("YooHoo")
                     cpuBoard.receiveAttack(square)
                 } else {
                     cpuBoard.missedAttack(square)
@@ -62,10 +60,18 @@ export class DomMethods {
         body.append(cpuMessage, plyrMessage);
     }
 
+    resetButton() {
+        const btn = document.createElement("button");
+        btn.textContent = "Reset"
+        btn.setAttribute("id", "reset");
+        body.appendChild(btn)
+    }
+
     createDOM = () => {
         this.gameContainers();
         this.gameboardSquares();
         this.boardMessages();
+        this.resetButton();
     }
 }
 

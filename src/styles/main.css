@@ -4,7 +4,7 @@
 
 body {
     display: grid;
-    grid-template: 1fr 1fr 10fr / 1fr 1fr;
+    grid-template: 1fr 1fr 10fr / 4fr 1fr 4fr;
     align-items: center;
     justify-items: center;
     margin: 0;
@@ -42,7 +42,7 @@ body {
 }
 
 .plyr-message {
-    grid-column: 2 / 3;
+    grid-column: 3 / -1;
 }
 
 #player-board,
@@ -55,7 +55,7 @@ body {
 }
 
 #player-board {
-    grid-column: 2 / 3;
+    grid-column: 3 / -1;
 }
 
 .playerSq,
@@ -67,4 +67,18 @@ body {
 
 #cpu-board {
     grid-column: 1 / 2;
+}
+
+/* Center Controls */
+
+#reset {
+    cursor: pointer;
+
+    grid-column: 2 / 3;
+    grid-row: 3 / -1;
+
+    width: 60%;
+    height: 25px;
+    border-radius: 8px;
+    border: 1px solid grey;
 }
