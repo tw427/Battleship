@@ -85,7 +85,8 @@ export class DomMethods {
         const lengthOptions = [2, 3, 4];
         const direction = document.createElement("select");
         const dirOptions = ["up", "right", "left", "down"];
-
+        
+        addForm.id = "ship-form";
         length.id = "ship-length";
         direction.id = "ship-dir";
 
