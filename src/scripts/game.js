@@ -6,8 +6,8 @@ const playerBoard = new Gameboard("player", []);
 
 export function startGame() {
     const dom = new DomMethods();
-
     dom.createDOM();
+    
     cpuShips();
     dom.gameboardEvents(cpuBoard);
 }

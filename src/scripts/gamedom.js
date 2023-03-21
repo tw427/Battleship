@@ -72,6 +72,42 @@ export class DomMethods {
         body.appendChild(btn)
     }
 
+    addShipForm() {
+        const addForm = document.createElement("form");
+
+        const lengthLabel = document.createElement("label");
+        const dirLabel = document.createElement("label");
+
+        lengthLabel.setAttribute("for", "ship-length");
+        dirLabel.setAttribute("for", "ship-dir");
+
+        const length = document.createElement("select");
+        const lengthOptions = [2, 3, 4];
+        const direction = document.createElement("select");
+        const dirOptions = ["up", "right", "left", "down"];
+
+        length.id = "ship-length";
+        direction.id = "ship-dir";
+
+        this.dropdownOptions(lengthOptions, length);
+        this.dropdownOptions(dirOptions, direction);
+
+        const addShip = document.createElement("button");
+        addShip.textContent = "Add Ship";
+
+        addForm.append(lengthLabel, length, dirLabel, direction, addShip);
+        body.appendChild(addForm);
+    }
+
+    dropdownOptions(options, element) {
+            for (let i = 0; i < options.length; i++) {
+                const option = document.createElement("option");
+                option.setAttribute("value", `${options[i]}`);
+                option.textContent = `${options[i]}`;
+                element.appendChild(option);
+            }
+    }
+
     resetDOM() {
         const cpuSquares = document.querySelectorAll(".cpuSq");
         const cpuMessage = document.querySelector(".cpu-message");
@@ -90,6 +126,7 @@ export class DomMethods {
         this.gameboardSquares();
         this.boardMessages();
         this.resetButton();
+        this.addShipForm();
     }
 }
 

@@ -58,8 +58,6 @@ export class Gameboard {
             message.innerText = "All ships have been sunk!";
         }
 
-        // Make a reset game button to appear
-        // Add a message to the side of the board that has won saying "${user} wins!"
     }
 
     missedAttack(square) {
