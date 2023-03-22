@@ -94,10 +94,28 @@ export class DomMethods {
         this.dropdownOptions(dirOptions, direction);
 
         const addShip = document.createElement("button");
+        addShip.id = "add-ship"
         addShip.textContent = "Add Ship";
 
         addForm.append(lengthLabel, length, dirLabel, direction, addShip);
         body.appendChild(addForm);
+    }
+
+    addShipBtnEvent() {
+        const addShip = document.getElementById("add-ship");
+        const pBoard = document.querySelectorAll("#player-board div");
+
+        addShip.addEventListener("click", (e) => {
+            e.preventDefault();
+            pBoard.forEach(square => {
+                square.addEventListener("pointerenter", () => {
+                    square.id = "visualize-ship";
+                })
+                square.addEventListener("pointerout", () => {
+                    square.id = "";
+                })
+            })
+        })
     }
 
     dropdownOptions(options, element) {
@@ -128,6 +146,7 @@ export class DomMethods {
         this.boardMessages();
         this.resetButton();
         this.addShipForm();
+        this.addShipBtnEvent();
     }
 }
 
