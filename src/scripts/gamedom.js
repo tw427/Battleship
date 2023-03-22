@@ -108,42 +108,26 @@ export class DomMethods {
             e.preventDefault();
             const direction = document.getElementById("ship-dir");
             const length = document.getElementById("ship-length");
+            const pBoard = document.querySelectorAll("#player-board div");
+            
+            // Pseudo reset event listeners on squares
+            pBoard.forEach(square => {
+                const clone = square.cloneNode(true);
+                square.parentNode.replaceChild(clone, square)
+            })
+
             this.playerBoardEvent(direction.value, Number(length.value) - 1);
         })
     }
     
     playerBoardEvent(dir, length) {
         const pBoard = document.querySelectorAll("#player-board div");
+
         pBoard.forEach(square => {
             square.addEventListener("pointerenter", () => {
-                const shipArr = [];
-                for (let i = 1; i <= length; i++) {
-                    let nextSq;
-                    
-                    switch(dir) {
-                        case "up":
-                            nextSq = document.querySelector(`.playerSq[data-x="${Number(square.dataset.x) - i}"][data-y="${square.dataset.y}"]`);
-                            shipArr.push(nextSq);
-                            this.shipVisuals(square, shipArr);
-                            break;
-                        case "right":
-                            nextSq = document.querySelector(`.playerSq[data-x="${square.dataset.x}"][data-y="${Number(square.dataset.y) + i}"]`);
-                            shipArr.push(nextSq);
-                            this.shipVisuals(square, shipArr);
-                            break;
-                        case "left":
-                            nextSq = document.querySelector(`.playerSq[data-x="${square.dataset.x}"][data-y="${Number(square.dataset.y) - i}"]`);
-                            shipArr.push(nextSq);
-                            this.shipVisuals(square, shipArr);
-                            break;
-                        case "down":
-                            nextSq = document.querySelector(`.playerSq[data-x="${Number(square.dataset.x) + i}"][data-y="${square.dataset.y}"]`);
-                            shipArr.push(nextSq);
-                            this.shipVisuals(square, shipArr);
-                            break;
-                    }
-                }
+                this.shipVisualFX(square, dir, length);
             })
+
             square.addEventListener("pointerout", () => {
                 const visualShip = document.querySelectorAll("#visualize-ship");
                 const visualError = document.querySelectorAll("#visualize-error");
@@ -162,7 +146,37 @@ export class DomMethods {
         })
     }
 
-    shipVisuals(square, shipArr) {
+    shipVisualFX(square, dir, length) {
+        const shipArr = [];
+                for (let i = 1; i <= length; i++) {
+                    let nextSq;
+                    
+                    switch(dir) {
+                        case "up":
+                            nextSq = document.querySelector(`.playerSq[data-x="${Number(square.dataset.x) - i}"][data-y="${square.dataset.y}"]`);
+                            shipArr.push(nextSq);
+                            this.shipFXStyles(square, shipArr);
+                            break;
+                        case "right":
+                            nextSq = document.querySelector(`.playerSq[data-x="${square.dataset.x}"][data-y="${Number(square.dataset.y) + i}"]`);
+                            shipArr.push(nextSq);
+                            this.shipFXStyles(square, shipArr);
+                            break;
+                        case "left":
+                            nextSq = document.querySelector(`.playerSq[data-x="${square.dataset.x}"][data-y="${Number(square.dataset.y) - i}"]`);
+                            shipArr.push(nextSq);
+                            this.shipFXStyles(square, shipArr);
+                            break;
+                        case "down":
+                            nextSq = document.querySelector(`.playerSq[data-x="${Number(square.dataset.x) + i}"][data-y="${square.dataset.y}"]`);
+                            shipArr.push(nextSq);
+                            this.shipFXStyles(square, shipArr);
+                            break;
+                    }
+                }
+    }
+
+    shipFXStyles(square, shipArr) {
             if (shipArr.every(item => item !== null)) {
                 shipArr.forEach(item => {
                     if (item !== null) {
