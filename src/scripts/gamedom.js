@@ -103,19 +103,81 @@ export class DomMethods {
 
     addShipBtnEvent() {
         const addShip = document.getElementById("add-ship");
-        const pBoard = document.querySelectorAll("#player-board div");
-
+        
         addShip.addEventListener("click", (e) => {
             e.preventDefault();
-            pBoard.forEach(square => {
-                square.addEventListener("pointerenter", () => {
-                    square.id = "visualize-ship";
-                })
-                square.addEventListener("pointerout", () => {
-                    square.id = "";
+            const direction = document.getElementById("ship-dir");
+            const length = document.getElementById("ship-length");
+            this.playerBoardEvent(direction.value, Number(length.value) - 1);
+        })
+    }
+    
+    playerBoardEvent(dir, length) {
+        const pBoard = document.querySelectorAll("#player-board div");
+        pBoard.forEach(square => {
+            square.addEventListener("pointerenter", () => {
+                const shipArr = [];
+                for (let i = 1; i <= length; i++) {
+                    let nextSq;
+                    
+                    switch(dir) {
+                        case "up":
+                            nextSq = document.querySelector(`.playerSq[data-x="${Number(square.dataset.x) - i}"][data-y="${square.dataset.y}"]`);
+                            shipArr.push(nextSq);
+                            this.shipVisuals(square, shipArr);
+                            break;
+                        case "right":
+                            nextSq = document.querySelector(`.playerSq[data-x="${square.dataset.x}"][data-y="${Number(square.dataset.y) + i}"]`);
+                            shipArr.push(nextSq);
+                            this.shipVisuals(square, shipArr);
+                            break;
+                        case "left":
+                            nextSq = document.querySelector(`.playerSq[data-x="${square.dataset.x}"][data-y="${Number(square.dataset.y) - i}"]`);
+                            shipArr.push(nextSq);
+                            this.shipVisuals(square, shipArr);
+                            break;
+                        case "down":
+                            nextSq = document.querySelector(`.playerSq[data-x="${Number(square.dataset.x) + i}"][data-y="${square.dataset.y}"]`);
+                            shipArr.push(nextSq);
+                            this.shipVisuals(square, shipArr);
+                            break;
+                    }
+                }
+            })
+            square.addEventListener("pointerout", () => {
+                const visualShip = document.querySelectorAll("#visualize-ship");
+                const visualError = document.querySelectorAll("#visualize-error");
+
+                if (visualError.length >= 1) {
+                    visualError.forEach(err => {
+                        err.id = "";
+                    })
+                }
+
+                visualShip.forEach(sq => {
+                    sq.id = "";
                 })
             })
+            // Click event to finalize decision of ship
         })
+    }
+
+    shipVisuals(square, shipArr) {
+            if (shipArr.every(item => item !== null)) {
+                shipArr.forEach(item => {
+                    if (item !== null) {
+                        item.id = "visualize-ship";
+                    }
+                })
+            square.id = "visualize-ship";
+            } else {
+                shipArr.forEach(item => {
+                    if (item !== null) {
+                        item.id = "visualize-error";
+                    }
+                })
+            square.id = "visualize-error";
+            }
     }
 
     dropdownOptions(options, element) {

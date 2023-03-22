@@ -107,3 +107,7 @@ body {
 #visualize-ship {
     background-color: lightgreen;
 }
+
+#visualize-error {
+    background-color: rgb(255, 107, 107);
+}
