@@ -12,7 +12,7 @@ body {
     width: 100vw;
 }
 
-.ship {
+div.ship {
     background-color: lightgreen;
 }
 

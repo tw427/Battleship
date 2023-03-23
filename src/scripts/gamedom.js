@@ -142,7 +142,17 @@ export class DomMethods {
                     sq.id = "";
                 })
             })
-            // Click event to finalize decision of ship
+            
+            square.addEventListener("click", () => {
+                const visualShip = document.querySelectorAll("#visualize-ship");
+                const visualError = document.querySelectorAll("#visualize-error");
+
+                if (visualError[0]) {
+                    return;
+                } else {
+                    visualShip.forEach(coord => coord.classList.add("ship"))
+                }
+            });
         })
     }
 
