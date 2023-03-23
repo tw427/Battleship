@@ -2,13 +2,18 @@ import { Ship } from "./main"
 import { DomMethods } from "./gamedom";
 import { Gameboard } from "./gameboard"
 export const cpuBoard = new Gameboard("cpu", []);
+export const playerBoard = new Gameboard("player", []);
 
 export function startGame() {
     const dom = new DomMethods();
     dom.createDOM();
 
-    cpuShips();
-    dom.gameboardEvents(cpuBoard);
+    // Only run gameboardEvents and cpuShips once player has placed all 4 of their ships and the game has started
+    // and then we can fire off the events after making sure that gameboardEvents is the only listener on squares after the reset
+    // Start game should fire off a listener reset for player board's squares and attach gameboardEvents
+
+    // cpuShips();
+    // dom.gameboardEvents();
 }
 
 export function resetGame() {
@@ -102,16 +107,6 @@ export function randomDir() {
     const randomNum = Math.floor(Math.random() * 4);
 
     return directions[randomNum];
-}
-
-
-export function boardEvent(square) {
-        square.addEventListener("click", () => {
-            if (square.classList.contains("ship")) {
-                cpuBoard.receiveAttack(square)
-            }
-            cpuBoard.missedAttack(square)
-        })
 }
 
 

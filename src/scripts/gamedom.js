@@ -1,6 +1,7 @@
 // import "../styles/main.css";
 import {createBoard} from "./gameboard"
-import {cpuBoard, resetGame} from "./game";
+import {cpuBoard, playerBoard, resetGame} from "./game";
+import {playerBoardEvent} from "./player";
 
 const body = document.querySelector("body");
 
@@ -41,12 +42,18 @@ export class DomMethods {
 
     gameboardEvents() {
         const cpuSquares = document.querySelectorAll(".cpuSq");
-        cpuSquares.forEach(square => {
+        const playerSquares = document.querySelectorAll(".playerSq");
+        this.gameboardEventLogic(cpuSquares, cpuBoard)
+        this.gameboardEventLogic(playerSquares, playerBoard)
+    }
+
+    gameboardEventLogic(boardSquares, board) {
+        boardSquares.forEach(square => {
             square.addEventListener("click", () => {
                 if (square.classList.contains("ship")) {
-                    cpuBoard.receiveAttack(square)
+                    board.receiveAttack(square)
                 } else {
-                    cpuBoard.missedAttack(square)
+                    board.missedAttack(square)
                 }
             })
         })
@@ -116,92 +123,8 @@ export class DomMethods {
                 square.parentNode.replaceChild(clone, square)
             })
 
-            this.playerBoardEvent(direction.value, Number(length.value) - 1);
+            playerBoardEvent(direction.value, Number(length.value) - 1);
         })
-    }
-    
-    playerBoardEvent(dir, length) {
-        const pBoard = document.querySelectorAll("#player-board div");
-
-        pBoard.forEach(square => {
-            square.addEventListener("pointerenter", () => {
-                this.shipVisualFX(square, dir, length);
-            })
-
-            square.addEventListener("pointerout", () => {
-                const visualShip = document.querySelectorAll("#visualize-ship");
-                const visualError = document.querySelectorAll("#visualize-error");
-
-                if (visualError.length >= 1) {
-                    visualError.forEach(err => {
-                        err.id = "";
-                    })
-                }
-
-                visualShip.forEach(sq => {
-                    sq.id = "";
-                })
-            })
-            
-            square.addEventListener("click", () => {
-                const visualShip = document.querySelectorAll("#visualize-ship");
-                const visualError = document.querySelectorAll("#visualize-error");
-
-                if (visualError[0]) {
-                    return;
-                } else {
-                    visualShip.forEach(coord => coord.classList.add("ship"))
-                }
-            });
-        })
-    }
-
-    shipVisualFX(square, dir, length) {
-        const shipArr = [];
-                for (let i = 1; i <= length; i++) {
-                    let nextSq;
-                    
-                    switch(dir) {
-                        case "up":
-                            nextSq = document.querySelector(`.playerSq[data-x="${Number(square.dataset.x) - i}"][data-y="${square.dataset.y}"]`);
-                            shipArr.push(nextSq);
-                            this.shipFXStyles(square, shipArr);
-                            break;
-                        case "right":
-                            nextSq = document.querySelector(`.playerSq[data-x="${square.dataset.x}"][data-y="${Number(square.dataset.y) + i}"]`);
-                            shipArr.push(nextSq);
-                            this.shipFXStyles(square, shipArr);
-                            break;
-                        case "left":
-                            nextSq = document.querySelector(`.playerSq[data-x="${square.dataset.x}"][data-y="${Number(square.dataset.y) - i}"]`);
-                            shipArr.push(nextSq);
-                            this.shipFXStyles(square, shipArr);
-                            break;
-                        case "down":
-                            nextSq = document.querySelector(`.playerSq[data-x="${Number(square.dataset.x) + i}"][data-y="${square.dataset.y}"]`);
-                            shipArr.push(nextSq);
-                            this.shipFXStyles(square, shipArr);
-                            break;
-                    }
-                }
-    }
-
-    shipFXStyles(square, shipArr) {
-            if (shipArr.every(item => item !== null)) {
-                shipArr.forEach(item => {
-                    if (item !== null) {
-                        item.id = "visualize-ship";
-                    }
-                })
-            square.id = "visualize-ship";
-            } else {
-                shipArr.forEach(item => {
-                    if (item !== null) {
-                        item.id = "visualize-error";
-                    }
-                })
-            square.id = "visualize-error";
-            }
     }
 
     dropdownOptions(options, element) {
