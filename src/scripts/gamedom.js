@@ -105,7 +105,7 @@ export class DomMethods {
         addShip.textContent = "Add Ship";
 
         addForm.append(lengthLabel, length, dirLabel, direction, addShip);
-        body.appendChild(addForm);
+        document.querySelector(".plyr-message").appendChild(addForm);
     }
 
     addShipBtnEvent() {
@@ -116,15 +116,16 @@ export class DomMethods {
             const direction = document.getElementById("ship-dir");
             const length = document.getElementById("ship-length");
             const pBoard = document.querySelectorAll("#player-board div");
-            
-            // Pseudo reset event listeners on squares
-            pBoard.forEach(square => {
-                const clone = square.cloneNode(true);
-                square.parentNode.replaceChild(clone, square)
-            })
 
             playerBoardEvent(direction.value, Number(length.value) - 1);
         })
+    }
+
+    remainingShips() {
+        const indicator = document.createElement("p");
+        indicator.textContent = "Ships left: 4";
+        indicator.id = "ship-remaining";
+        document.querySelector(".plyr-message").appendChild(indicator)
     }
 
     dropdownOptions(options, element) {
@@ -156,6 +157,7 @@ export class DomMethods {
         this.resetButton();
         this.addShipForm();
         this.addShipBtnEvent();
+        this.remainingShips();
     }
 }
 

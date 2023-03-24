@@ -28,6 +28,7 @@ export function playerBoardEvent(dir, length) {
         
         square.addEventListener("click", () => {
             const visualError = document.querySelectorAll("#visualize-error");
+            const remainingIndicator = document.getElementById("ship-remaining");
             const coord = [Number(square.dataset.x), Number(square.dataset.y)];
             const ship = new Ship(length + 1);
 
@@ -37,6 +38,7 @@ export function playerBoardEvent(dir, length) {
 
             playerBoard.placeShip(coord, dir, ship);
             playerBoard.ships.push(ship);
+            remainingIndicator.textContent = `Ships left: ${4 - playerBoard.ships.length}`
 
             resetListeners(pBoard);
             console.log(playerBoard);

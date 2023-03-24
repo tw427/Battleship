@@ -90,8 +90,6 @@ div.miss {
     display: flex;
     justify-content: center;
     gap: 12px;
-    grid-column: 3 / -1;
-    grid-row: 2 / 3;
 
     width: 400px;
 }
@@ -110,4 +108,10 @@ div.miss {
 
 #visualize-error {
     background-color: rgb(255, 107, 107);
+}
+
+#ship-remaining {
+    margin: 0;
+    font-size: 18px;
+    width: 200px;
 }
