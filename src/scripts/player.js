@@ -37,13 +37,22 @@ export function playerBoardEvent(dir, length) {
 
             playerBoard.placeShip(coord, dir, ship);
             playerBoard.ships.push(ship);
+
+            resetListeners(pBoard);
             console.log(playerBoard);
         });
     })
 }
 
+function resetListeners(pBoard) {
+    pBoard.forEach(square => {
+        const clone = square.cloneNode(true);
+        square.parentNode.replaceChild(clone, square)
+    })
+}
+
 function shipVisualFX(square, dir, length) {
-    const shipArr = [];
+    const shipArr = [square];
             for (let i = 1; i <= length; i++) {
                 let nextSq;
                 
@@ -51,41 +60,47 @@ function shipVisualFX(square, dir, length) {
                     case "up":
                         nextSq = document.querySelector(`.playerSq[data-x="${Number(square.dataset.x) - i}"][data-y="${square.dataset.y}"]`);
                         shipArr.push(nextSq);
-                        shipFXStyles(square, shipArr);
+                        shipFXStyles(shipArr);
                         break;
                     case "right":
                         nextSq = document.querySelector(`.playerSq[data-x="${square.dataset.x}"][data-y="${Number(square.dataset.y) + i}"]`);
                         shipArr.push(nextSq);
-                        shipFXStyles(square, shipArr);
+                        shipFXStyles(shipArr);
                         break;
                     case "left":
                         nextSq = document.querySelector(`.playerSq[data-x="${square.dataset.x}"][data-y="${Number(square.dataset.y) - i}"]`);
                         shipArr.push(nextSq);
-                        shipFXStyles(square, shipArr);
+                        shipFXStyles(shipArr);
                         break;
                     case "down":
                         nextSq = document.querySelector(`.playerSq[data-x="${Number(square.dataset.x) + i}"][data-y="${square.dataset.y}"]`);
                         shipArr.push(nextSq);
-                        shipFXStyles(square, shipArr);
+                        shipFXStyles(shipArr);
                         break;
                 }
             }
 }
 
-function shipFXStyles(square, shipArr) {
+function shipFXStyles(shipArr) {
         if (shipArr.every(item => item !== null)) {
+
+            if (shipArr.some(item => item.classList.contains("ship"))) {
+                shipArr.forEach(item => {
+                    item.id = "visualize-error";
+                })
+                return;
+            }
+
             shipArr.forEach(item => {
                 if (item !== null) {
                     item.id = "visualize-ship";
                 }
             })
-        square.id = "visualize-ship";
         } else {
             shipArr.forEach(item => {
                 if (item !== null) {
                     item.id = "visualize-error";
                 }
             })
-        square.id = "visualize-error";
         }
 }
