@@ -153,6 +153,23 @@ export class DomMethods {
         }
     }
 
+    observeBoard() {
+        const cpuBoard = document.getElementById("cpu-board")
+        const options = {
+            attributes: true,
+            subtree: true,
+        }
+        const observer = new MutationObserver(callback);
+
+        function callback(mutationList, observer) {
+            mutationList.forEach(mutation => {
+                console.log(`The ${mutation.target.dataset.x}, ${mutation.target.dataset.y} has changed ${mutation.attributeName}`);
+            })
+        }
+
+        observer.observe(cpuBoard, options);
+    }
+
     createDOM = () => {
         this.gameContainers();
         this.gameboardSquares();
@@ -161,6 +178,7 @@ export class DomMethods {
         this.addShipForm();
         this.addShipBtnEvent();
         this.remainingShips();
+        this.observeBoard();
     }
 }
 
