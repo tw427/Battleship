@@ -1,5 +1,5 @@
 import "../styles/main.css";
-import { startGame } from "./game";
+import { createDOM } from "./game";
 
 export class Ship {
     constructor(length) {
@@ -21,4 +21,4 @@ export class Ship {
     }
 };
 
-startGame();
+createDOM();

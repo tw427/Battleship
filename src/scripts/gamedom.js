@@ -1,6 +1,6 @@
 // import "../styles/main.css";
 import {createBoard} from "./gameboard"
-import {cpuBoard, playerBoard, resetGame} from "./game";
+import {cpuBoard, resetGame} from "./game";
 import {playerBoardEvent} from "./player";
 
 const body = document.querySelector("body");
@@ -40,17 +40,18 @@ export class DomMethods {
         });
     }
 
-    gameboardEvents() {
+    gameboardEvents(board) {
         const cpuSquares = document.querySelectorAll(".cpuSq");
         const playerSquares = document.querySelectorAll(".playerSq");
         this.gameboardEventLogic(cpuSquares, cpuBoard)
-        this.gameboardEventLogic(playerSquares, playerBoard)
+        this.gameboardEventLogic(playerSquares, board)
     }
 
     gameboardEventLogic(boardSquares, board) {
         boardSquares.forEach(square => {
             square.addEventListener("click", () => {
                 if (square.classList.contains("ship")) {
+                    console.log(board)
                     board.receiveAttack(square)
                 } else {
                     board.missedAttack(square)

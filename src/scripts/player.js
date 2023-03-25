@@ -1,9 +1,12 @@
 import { Gameboard } from "./gameboard";
 import { Ship } from "./main";
+import { startGame } from "./game";
 
 const playerBoard = new Gameboard("player", []);
 
 export function playerBoardEvent(dir, length) {
+    resetListeners();
+    
     const pBoard = document.querySelectorAll("#player-board div");
 
     pBoard.forEach(square => {
@@ -28,25 +31,40 @@ export function playerBoardEvent(dir, length) {
         
         square.addEventListener("click", () => {
             const visualError = document.querySelectorAll("#visualize-error");
-            const remainingIndicator = document.getElementById("ship-remaining");
             const coord = [Number(square.dataset.x), Number(square.dataset.y)];
             const ship = new Ship(length + 1);
-
+            
             if (visualError[0]) {
                 return;
             } 
-
+            
             playerBoard.placeShip(coord, dir, ship);
             playerBoard.ships.push(ship);
-            remainingIndicator.textContent = `Ships left: ${4 - playerBoard.ships.length}`
-
-            resetListeners(pBoard);
-            console.log(playerBoard);
+            console.log(playerBoard)
+            
+            checkStartGame(playerBoard);
         });
     })
 }
 
-function resetListeners(pBoard) {
+function checkStartGame(board) {
+    const remainingIndicator = document.getElementById("ship-remaining");
+    const remaining = 4 - playerBoard.ships.length;
+
+    if (remaining != 0) {
+        remainingIndicator.textContent = `Ships left: ${remaining}`
+        resetListeners();
+        return;
+    }
+    
+    document.getElementById("add-ship").disabled = true;
+    remainingIndicator.textContent = `Ships floating: 4`
+    resetListeners();
+    startGame(board);
+}
+
+function resetListeners() {
+    const pBoard = document.querySelectorAll("#player-board div");
     pBoard.forEach(square => {
         const clone = square.cloneNode(true);
         square.parentNode.replaceChild(clone, square)

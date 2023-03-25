@@ -55,7 +55,7 @@ export class Gameboard {
         }
 
         if (this.ships.every(ship => ship.sunk == true)) {
-            message.innerText = "All ships have been sunk!";
+            this.allSunk(message);
         }
 
     }
@@ -66,6 +66,10 @@ export class Gameboard {
 
         square.classList.add("miss")
         this.miss++;
+    }
+
+    allSunk(msg) {
+        msg.innerText = "All ships have been sunk!";
     }
 }
 
