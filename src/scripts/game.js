@@ -48,6 +48,13 @@ function attack() {
         square.classList.add("miss");
     }
 
+    // Add a " prevHit " property to cpuBoard class constructor
+    // if " prevHit " was a hit we will try adjacent spaces next to the previous attack from cpu
+    // Add " prevAtk " to be updated as our cpu's previous attack
+    // The logic for our cpu's intelligent will disregard the random attack logic once we have a hit
+    // and now it will continue to rely on trying prevAtk and depending on prevHit to destroy a player's ship completely
+    // once the game has provided a " Ship has sunk! " message the cpu will now resume random attacks until it prevHit is === "hit"
+
     document.querySelector(".cpu-message").textContent = `CPU has attacked coordinates ${x}, ${y}!`;
     setTimeout(gameboardEvents, 2 * 1000);
 }
