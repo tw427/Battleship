@@ -145,18 +145,19 @@ export class DomMethods {
 }
 
 export function resetListeners(cpu) {
-    const pBoard = document.querySelectorAll("#player-board div");
-    pBoard.forEach(square => {
-        const clone = square.cloneNode(true);
-        square.parentNode.replaceChild(clone, square)
-    })
-
     if (cpu) {
         cpu.forEach(square => {
             const clone = square.cloneNode(true);
             square.parentNode.replaceChild(clone, square)
         })
+        return;
     }
+
+    const pBoard = document.querySelectorAll("#player-board div");
+    pBoard.forEach(square => {
+        const clone = square.cloneNode(true);
+        square.parentNode.replaceChild(clone, square)
+    })
 }
 
 export function observeBoard() {
@@ -181,6 +182,7 @@ export function observeBoard() {
 
 export function gameboardEvents() {
     const cpuSquares = document.querySelectorAll(".cpuSq");
+    console.log("Fire!")
     gameboardEventLogic(cpuSquares, cpuBoard)
 }
 
