@@ -1,7 +1,7 @@
 // import "../styles/main.css";
 import {createBoard} from "./gameboard"
-import {cpuBoard, resetGame} from "./game";
-import {playerBoardEvent} from "./player";
+import {cpuBoard, resetCPU} from "./game";
+import {playerBoardEvent, resetPlayer} from "./player";
 
 const body = document.querySelector("body");
 
@@ -75,7 +75,8 @@ export class DomMethods {
 
         btn.addEventListener("click", () => {
             this.resetDOM()
-            resetGame()
+            resetCPU()
+            resetPlayer()
         })
         body.appendChild(btn)
     }
@@ -116,7 +117,6 @@ export class DomMethods {
             e.preventDefault();
             const direction = document.getElementById("ship-dir");
             const length = document.getElementById("ship-length");
-            const pBoard = document.querySelectorAll("#player-board div");
 
             playerBoardEvent(direction.value, Number(length.value) - 1);
         })
@@ -140,15 +140,17 @@ export class DomMethods {
 
     resetDOM() {
         const cpuSquares = document.querySelectorAll(".cpuSq");
+        const playerSquares = document.querySelectorAll(".playerSq");
+        const boards = [cpuSquares, playerSquares];
         const cpuMessage = document.querySelector(".cpu-message");
 
         cpuMessage.textContent = ""
-
-        cpuSquares.forEach(square => {
-            square.classList.contains("miss") ? square.classList.remove("miss") : square.id = "";
-            square.classList.contains("ship") ? square.classList.remove("ship") : null;
-        });
-    
+        for (let i = 0; i < 2; i++) {
+            boards[i].forEach(square => {
+                square.classList.contains("miss") ? square.classList.remove("miss") : square.id = "";
+                square.classList.contains("ship") ? square.classList.remove("ship") : null;
+            });
+        }
     }
 
     createDOM = () => {

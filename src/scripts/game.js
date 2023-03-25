@@ -9,19 +9,15 @@ export function createDOM() {
 }
 
 export function startGame(board) {
-    console.log(board)
     const dom = new DomMethods();
     cpuShips();
     dom.gameboardEvents(board);
 }
 
-export function resetGame() {
+export function resetCPU() {
     cpuBoard.hit = 0;
     cpuBoard.miss = 0;
     cpuBoard.ships = [];
-    console.log(cpuBoard)
-    cpuShips();
-    
 }
 
 function cpuShips() {

@@ -61,12 +61,29 @@ function checkStartGame() {
     startGame(playerBoard);
 }
 
-function resetListeners() {
+export function resetPlayer() {
+    const cpuBoard = document.querySelectorAll("#cpu-board div");
+    playerBoard.hit = 0;
+    playerBoard.miss = 0;
+    playerBoard.ships = [];
+    document.getElementById("add-ship").disabled = false;
+    document.getElementById("ship-remaining").textContent = "Ships left: $4";
+    resetListeners(cpuBoard);
+}
+
+function resetListeners(cpu) {
     const pBoard = document.querySelectorAll("#player-board div");
     pBoard.forEach(square => {
         const clone = square.cloneNode(true);
         square.parentNode.replaceChild(clone, square)
     })
+
+    if (cpu) {
+        cpu.forEach(square => {
+            const clone = square.cloneNode(true);
+            square.parentNode.replaceChild(clone, square)
+        })
+    }
 }
 
 function shipVisualFX(square, dir, length) {
