@@ -24,7 +24,15 @@ export function cpuAttack() {
     const cpuSquares = document.querySelectorAll("#cpu-board div");
     console.log("Working")
     resetListeners(cpuSquares)
-    setTimeout(gameboardEvents, 3 * 1000)
+    document.querySelector(".cpu-message").textContent = "CPU is making an attack...";
+    setTimeout(attack, 3 * 1000);
+}
+
+function attack() {
+    const x = randomMinMaxNum(1, 10);
+    const y = randomMinMaxNum(1, 10);
+    document.querySelector(".cpu-message").textContent = `CPU has attacked coordinates ${x}, ${y}!`;
+    setTimeout(gameboardEvents, 2 * 1000);
 }
 
 function cpuShips() {
