@@ -6,7 +6,6 @@ const playerBoard = new Gameboard("player", []);
 
 export function playerBoardEvent(dir, length) {
     resetListeners();
-    
     const pBoard = document.querySelectorAll("#player-board div");
 
     pBoard.forEach(square => {
@@ -40,14 +39,13 @@ export function playerBoardEvent(dir, length) {
             
             playerBoard.placeShip(coord, dir, ship);
             playerBoard.ships.push(ship);
-            console.log(playerBoard)
             
-            checkStartGame(playerBoard);
+            checkStartGame();
         });
     })
 }
 
-function checkStartGame(board) {
+function checkStartGame() {
     const remainingIndicator = document.getElementById("ship-remaining");
     const remaining = 4 - playerBoard.ships.length;
 
@@ -60,7 +58,7 @@ function checkStartGame(board) {
     document.getElementById("add-ship").disabled = true;
     remainingIndicator.textContent = `Ships floating: 4`
     resetListeners();
-    startGame(board);
+    startGame(playerBoard);
 }
 
 function resetListeners() {

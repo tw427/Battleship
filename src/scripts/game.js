@@ -2,17 +2,17 @@ import { Ship } from "./main"
 import { DomMethods } from "./gamedom";
 import { Gameboard } from "./gameboard"
 export const cpuBoard = new Gameboard("cpu", []);
-export const playerBoard = new Gameboard("player", []);
 
 export function createDOM() {
     const dom = new DomMethods();
     dom.createDOM();
 }
 
-export function startGame() {
+export function startGame(board) {
+    console.log(board)
     const dom = new DomMethods();
     cpuShips();
-    dom.gameboardEvents();
+    dom.gameboardEvents(board);
 }
 
 export function resetGame() {
