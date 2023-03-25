@@ -12,12 +12,17 @@ export function startGame(board) {
     const dom = new DomMethods();
     cpuShips();
     dom.gameboardEvents(board);
+    dom.observeBoard();
 }
 
 export function resetCPU() {
     cpuBoard.hit = 0;
     cpuBoard.miss = 0;
     cpuBoard.ships = [];
+}
+
+export function cpuAttack() {
+    console.log("Working")
 }
 
 function cpuShips() {

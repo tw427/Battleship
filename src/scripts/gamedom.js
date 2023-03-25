@@ -1,6 +1,6 @@
 // import "../styles/main.css";
 import {createBoard} from "./gameboard"
-import {cpuBoard, resetCPU} from "./game";
+import {cpuBoard, resetCPU, cpuAttack} from "./game";
 import {playerBoardEvent, resetPlayer} from "./player";
 
 const body = document.querySelector("body");
@@ -163,7 +163,10 @@ export class DomMethods {
 
         function callback(mutationList, observer) {
             mutationList.forEach(mutation => {
-                console.log(`The ${mutation.target.dataset.x}, ${mutation.target.dataset.y} has changed ${mutation.attributeName}`);
+                if (mutation.target.id == "hit" || mutation.target.className.includes("miss")) {
+                    cpuAttack();
+                    console.log(`The ${mutation.target.dataset.x}, ${mutation.target.dataset.y} has changed ${mutation.attributeName}`);
+                }
             })
         }
 
@@ -178,7 +181,6 @@ export class DomMethods {
         this.addShipForm();
         this.addShipBtnEvent();
         this.remainingShips();
-        this.observeBoard();
     }
 }
 
