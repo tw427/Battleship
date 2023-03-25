@@ -1,5 +1,5 @@
 import { Ship } from "./main"
-import { DomMethods } from "./gamedom";
+import { DomMethods, gameboardEvents, observeBoard } from "./gamedom";
 import { Gameboard } from "./gameboard"
 export const cpuBoard = new Gameboard("cpu", []);
 
@@ -8,11 +8,10 @@ export function createDOM() {
     dom.createDOM();
 }
 
-export function startGame(board) {
-    const dom = new DomMethods();
+export function startGame() {
     cpuShips();
-    dom.gameboardEvents(board);
-    dom.observeBoard();
+    gameboardEvents();
+    observeBoard();
 }
 
 export function resetCPU() {
@@ -23,6 +22,12 @@ export function resetCPU() {
 
 export function cpuAttack() {
     console.log("Working")
+    disableBoard()
+}
+
+function disableBoard() {
+    const cpuSquares = document.querySelectorAll("#cpu-board div");
+    console.log(cpuSquares);
 }
 
 function cpuShips() {

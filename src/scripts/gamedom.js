@@ -40,26 +40,6 @@ export class DomMethods {
         });
     }
 
-    gameboardEvents(board) {
-        const cpuSquares = document.querySelectorAll(".cpuSq");
-        const playerSquares = document.querySelectorAll(".playerSq");
-        this.gameboardEventLogic(cpuSquares, cpuBoard)
-        this.gameboardEventLogic(playerSquares, board)
-    }
-
-    gameboardEventLogic(boardSquares, board) {
-        boardSquares.forEach(square => {
-            square.addEventListener("click", () => {
-                if (square.classList.contains("ship")) {
-                    console.log(board)
-                    board.receiveAttack(square)
-                } else {
-                    board.missedAttack(square)
-                }
-            })
-        })
-    }
-
     boardMessages() {
         const cpuMessage = document.createElement("div");
         const plyrMessage = document.createElement("div");
@@ -153,26 +133,6 @@ export class DomMethods {
         }
     }
 
-    observeBoard() {
-        const cpuBoard = document.getElementById("cpu-board")
-        const options = {
-            attributes: true,
-            subtree: true,
-        }
-        const observer = new MutationObserver(callback);
-
-        function callback(mutationList, observer) {
-            mutationList.forEach(mutation => {
-                if (mutation.target.id == "hit" || mutation.target.className.includes("miss")) {
-                    cpuAttack();
-                    console.log(`The ${mutation.target.dataset.x}, ${mutation.target.dataset.y} has changed ${mutation.attributeName}`);
-                }
-            })
-        }
-
-        observer.observe(cpuBoard, options);
-    }
-
     createDOM = () => {
         this.gameContainers();
         this.gameboardSquares();
@@ -184,4 +144,55 @@ export class DomMethods {
     }
 }
 
+export function resetListeners(cpu) {
+    const pBoard = document.querySelectorAll("#player-board div");
+    pBoard.forEach(square => {
+        const clone = square.cloneNode(true);
+        square.parentNode.replaceChild(clone, square)
+    })
 
+    if (cpu) {
+        cpu.forEach(square => {
+            const clone = square.cloneNode(true);
+            square.parentNode.replaceChild(clone, square)
+        })
+    }
+}
+
+export function observeBoard() {
+    const cpuBoard = document.getElementById("cpu-board")
+    const options = {
+        attributes: true,
+        subtree: true,
+    }
+    const observer = new MutationObserver(callback);
+
+    function callback(mutationList, observer) {
+        mutationList.forEach(mutation => {
+            if (mutation.target.id == "hit" || mutation.target.className.includes("miss")) {
+                cpuAttack();
+                console.log(`The ${mutation.target.dataset.x}, ${mutation.target.dataset.y} has changed ${mutation.attributeName}`);
+            }
+        })
+    }
+
+    observer.observe(cpuBoard, options);
+}
+
+export function gameboardEvents() {
+    const cpuSquares = document.querySelectorAll(".cpuSq");
+    gameboardEventLogic(cpuSquares, cpuBoard)
+}
+
+export function gameboardEventLogic(boardSquares, board) {
+    boardSquares.forEach(square => {
+        square.addEventListener("click", () => {
+            if (square.classList.contains("ship")) {
+                console.log(board)
+                board.receiveAttack(square)
+            } else {
+                board.missedAttack(square)
+            }
+        })
+    })
+}
