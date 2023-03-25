@@ -31,6 +31,23 @@ export function cpuAttack() {
 function attack() {
     const x = randomMinMaxNum(1, 10);
     const y = randomMinMaxNum(1, 10);
+
+    let square = document.querySelector(`.playerSq[data-x="${x}"][data-y="${y}"]`);
+    console.log(square);
+
+    while (square.className.includes("miss") || square.id == "hit") {
+        const newX = randomMinMaxNum(1, 10);
+        const newY = randomMinMaxNum(1, 10);
+        square = document.querySelector(`.playerSq[data-x="${newX}"][data-y="${newY}"]`)
+        console.log(square);
+    }
+
+    if (square.className.includes("ship")) {
+        square.id = "hit";
+    } else {
+        square.classList.add("miss");
+    }
+
     document.querySelector(".cpu-message").textContent = `CPU has attacked coordinates ${x}, ${y}!`;
     setTimeout(gameboardEvents, 2 * 1000);
 }
