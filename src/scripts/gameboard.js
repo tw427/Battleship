@@ -5,6 +5,8 @@ export class Gameboard {
         this.board = createBoard();
         this.miss = 0;
         this.hit = 0;
+        this.prevHit = "";
+        this.prevAtk = "";
     }
 
     placeShip(cord, dir, ship) {

@@ -24,33 +24,42 @@ export function cpuAttack() {
     const cpuSquares = document.querySelectorAll("#cpu-board div");
     resetListeners(cpuSquares)
     document.querySelector(".cpu-message").textContent = "CPU is making an attack...";
-    setTimeout(attack, 3 * 1000);
+    setTimeout(attack, 0 * 1000);
 }
 
 function attack() {
     const x = randomMinMaxNum(1, 10);
     const y = randomMinMaxNum(1, 10);
+    let randSq = document.querySelector(`.playerSq[data-x="${x}"][data-y="${y}"]`);
 
-    let square = document.querySelector(`.playerSq[data-x="${x}"][data-y="${y}"]`);
+    let square = randomAttack(randSq);
 
     if (cpuBoard.prevHit == "") {
-        while (square.className.includes("miss") || square.id == "hit") {
-            const newX = randomMinMaxNum(1, 10);
-            const newY = randomMinMaxNum(1, 10);
-            square = document.querySelector(`.playerSq[data-x="${newX}"][data-y="${newY}"]`)
-        }
-    } else if (cpuBoard.prevHit == "hit") {
-        if (cpuBoard.prevHit == "miss") {
-            
-        }
+        square = randomAttack(square);
+    } else if (cpuBoard.prevHit == "hit" || cpuBoard.prevHit == "retry") {
+
         const x = cpuBoard.prevAtk.dataset.x;
         const y = cpuBoard.prevAtk.dataset.y;
         const left = document.querySelector(`.playerSq[data-x="${x}"][data-y="${y - 1}"]`);
-        const right = document.querySelector(`.playerSq[data-x="${x}"][data-y="${y + 1}"]`);
+        const right = document.querySelector(`.playerSq[data-x="${x}"][data-y="${+y + 1}"]`);
         const above = document.querySelector(`.playerSq[data-x="${x - 1}"][data-y="${y}"]`);
-        const below = document.querySelector(`.playerSq[data-x="${x + 1}"][data-y="${y}"]`);
+        const below = document.querySelector(`.playerSq[data-x="${+x + 1}"][data-y="${y}"]`);
         const choices = [left, right, above, below];
-        square = choices[randomMinMaxNum(0, 3)];
+        let randChoice = choices[0];
+
+        while (randChoice === null || randChoice === undefined || randChoice.id === "hit" || randChoice.classList.contains("miss")) {
+            if (choices.length <= 0 || checkChoices(choices)) {
+                console.log("if statement fired")
+                cpuBoard.prevHit = "";
+                randChoice = randomAttack(cpuBoard.prevAtk);
+                break;
+            }
+            
+            choices.shift();
+            randChoice = choices[0]
+        }
+
+        square = randChoice;
         console.log(square)
     }
 
@@ -58,16 +67,16 @@ function attack() {
         square.id = "hit";
         cpuBoard.prevHit = "hit"
         cpuBoard.prevAtk = square;
-        console.log(cpuBoard)
-    } else if (cpuBoard.prevHit == "hit") {
+        console.log(cpuBoard.prevAtk)
+    } else if (cpuBoard.prevHit == "hit" || cpuBoard.prevHit == "retry") {
         square.classList.add("miss");
-        cpuBoard.prevHit = "miss"
-        console.log(cpuBoard)
+        cpuBoard.prevHit = "retry"
+        console.log(cpuBoard.prevAtk)
     } else {
         square.classList.add("miss");
         cpuBoard.prevHit = "miss"
         cpuBoard.prevAtk = square;
-        console.log(cpuBoard)
+        console.log(cpuBoard.prevAtk)
     }
 
     // Add a " prevHit " property to cpuBoard class constructor
@@ -78,7 +87,24 @@ function attack() {
     // once the game has provided a " Ship has sunk! " message the cpu will now resume random attacks until it prevHit is === "hit"
 
     document.querySelector(".cpu-message").textContent = `CPU has attacked coordinates ${x}, ${y}!`;
-    setTimeout(gameboardEvents, 1000);
+    gameboardEvents();
+}
+
+function randomAttack(square) {
+    let newSq = square;
+    while (newSq.className.includes("miss") || newSq.id == "hit") {
+        const newX = randomMinMaxNum(1, 10);
+        const newY = randomMinMaxNum(1, 10);
+        newSq = document.querySelector(`.playerSq[data-x="${newX}"][data-y="${newY}"]`)
+    }
+    return newSq;
+}
+
+function checkChoices(arr) {
+    console.log(arr);
+    return arr.every(choice => {
+        choice === null || choice === undefined || choice.id === "hit" || choice.classList.contains("miss")
+    })
 }
 
 function cpuShips() {
