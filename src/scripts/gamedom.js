@@ -187,6 +187,12 @@ export function gameboardEvents() {
 export function gameboardEventLogic(boardSquares, board) {
     boardSquares.forEach(square => {
         square.addEventListener("click", () => {
+
+            if (board.ships.every(ship => ship.sunk == true)) {
+                resetListeners(boardSquares);
+                return;
+            }
+
             if (square.classList.contains("ship") && !(square.id === "hit")) {
                 board.receiveAttack(square)
             } else if (!square.classList.contains("miss") && !(square.classList.contains("ship"))) {

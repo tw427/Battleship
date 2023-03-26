@@ -1,6 +1,7 @@
 import { Ship } from "./main"
 import { DomMethods, gameboardEvents, observeBoard, resetListeners } from "./gamedom";
 import { Gameboard } from "./gameboard"
+import { playerBoard } from "./player";
 export const cpuBoard = new Gameboard("cpu", []);
 
 export function createDOM() {
@@ -21,6 +22,9 @@ export function resetCPU() {
 }
 
 export function cpuAttack() {
+    if (cpuBoard.ships.every(ship => ship.sunk == true)) {
+        return;
+    }
     const cpuSquares = document.querySelectorAll("#cpu-board div");
     resetListeners(cpuSquares)
     document.querySelector(".cpu-message").textContent = "CPU is making an attack...";
@@ -60,28 +64,24 @@ function attack() {
         }
 
         square = randChoice;
-        console.log(square)
     }
 
     if (square.className.includes("ship")) {
-        square.id = "hit";
+        playerBoard.receiveAttack(square);
         cpuBoard.prevHit = "hit"
         cpuBoard.prevAtk = square;
-        console.log(cpuBoard.prevAtk)
     } else if (cpuBoard.prevHit == "hit" || cpuBoard.prevHit == "retry") {
-        square.classList.add("miss");
+        playerBoard.missedAttack(square)
         cpuBoard.prevHit = "retry"
-        console.log(cpuBoard.prevAtk)
     } else {
+        playerBoard.missedAttack(square)
         square.classList.add("miss");
         cpuBoard.prevHit = "miss"
         cpuBoard.prevAtk = square;
-        console.log(cpuBoard.prevAtk)
     }
 
     // once the game has provided a " Ship has sunk! " message the cpu will now resume random attacks until it prevHit is === "hit"
 
-    document.querySelector(".cpu-message").textContent = `CPU has attacked coordinates ${x}, ${y}!`;
     gameboardEvents();
 }
 

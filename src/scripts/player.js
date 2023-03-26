@@ -3,7 +3,7 @@ import { Ship } from "./main";
 import { startGame } from "./game";
 import { resetListeners } from "./gamedom";
 
-const playerBoard = new Gameboard("player", []);
+export let playerBoard = new Gameboard("player", []);
 
 export function playerBoardEvent(dir, length) {
     resetListeners();
@@ -59,8 +59,13 @@ function checkStartGame() {
     document.getElementById("add-ship").disabled = true;
     remainingIndicator.textContent = `Ships floating: 4`
     resetListeners();
-    startGame(playerBoard);
+    startGame();
 }
+
+// export function checkPlayerShips() {
+//     const remainingShips = playerBoard.ships.length;
+//     if (4 - remainingShips > 0)
+// }
 
 export function resetPlayer() {
     const cpuBoard = document.querySelectorAll("#cpu-board div");
