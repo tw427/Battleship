@@ -63,7 +63,7 @@ function checkStartGame() {
 }
 
 export function checkPlayerShips() {
-
+    // Write function to end the game when all ships have been sunk in playerBoard.ships
     removeSunken();
 }
 

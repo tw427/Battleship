@@ -51,7 +51,7 @@ export class Gameboard {
                         ship.hit()
                         square.id = "hit";
                         ship.sunk == false ? this.hit++ : null;
-                        message.innerText == `${this.opponent} hit!` ? null : message.innerText = `${this.opponent} hit!`
+                        message.innerText == `${this.opponent} hit!` ? null : message.innerText = `${this.opponent} hit!`, 2000;
                     }
                 })
             })
@@ -65,7 +65,7 @@ export class Gameboard {
 
     missedAttack(square) {
         const message = document.querySelector(`.${this.id}-message`)
-        message.innerText == `${this.opponent} missed!` ? null : message.innerText = `${this.opponent} missed!`
+        message.innerText == `${this.opponent} missed!` ? null : message.innerText = `${this.opponent} missed!`, 2000
 
         square.classList.add("miss")
         this.miss++;

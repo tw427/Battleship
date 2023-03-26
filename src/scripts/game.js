@@ -27,6 +27,7 @@ export function cpuAttack() {
     }
     const cpuSquares = document.querySelectorAll("#cpu-board div");
     resetListeners(cpuSquares)
+    document.querySelector(".player-message").textContent = "";
     document.querySelector(".cpu-action").textContent = "CPU is making an attack...";
     setTimeout(attack, 2 * 1000);
 }

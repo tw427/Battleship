@@ -4,7 +4,7 @@
 
 body {
     display: grid;
-    grid-template: 1fr 1fr 10fr / 4fr 1fr 4fr;
+    grid-template: 1fr 1fr 8fr / 4fr 1fr 4fr;
     align-items: center;
     justify-items: center;
     margin: 0;
@@ -29,7 +29,7 @@ div.miss {
 .player-form,
 .cpu-action {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     width: 420px;
     height: 50%;
