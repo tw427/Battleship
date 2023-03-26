@@ -22,7 +22,6 @@ export function resetCPU() {
 
 export function cpuAttack() {
     const cpuSquares = document.querySelectorAll("#cpu-board div");
-    console.log("Working")
     resetListeners(cpuSquares)
     document.querySelector(".cpu-message").textContent = "CPU is making an attack...";
     setTimeout(attack, 3 * 1000);
@@ -33,19 +32,42 @@ function attack() {
     const y = randomMinMaxNum(1, 10);
 
     let square = document.querySelector(`.playerSq[data-x="${x}"][data-y="${y}"]`);
-    console.log(square);
 
-    while (square.className.includes("miss") || square.id == "hit") {
-        const newX = randomMinMaxNum(1, 10);
-        const newY = randomMinMaxNum(1, 10);
-        square = document.querySelector(`.playerSq[data-x="${newX}"][data-y="${newY}"]`)
-        console.log(square);
+    if (cpuBoard.prevHit == "") {
+        while (square.className.includes("miss") || square.id == "hit") {
+            const newX = randomMinMaxNum(1, 10);
+            const newY = randomMinMaxNum(1, 10);
+            square = document.querySelector(`.playerSq[data-x="${newX}"][data-y="${newY}"]`)
+        }
+    } else if (cpuBoard.prevHit == "hit") {
+        if (cpuBoard.prevHit == "miss") {
+            
+        }
+        const x = cpuBoard.prevAtk.dataset.x;
+        const y = cpuBoard.prevAtk.dataset.y;
+        const left = document.querySelector(`.playerSq[data-x="${x}"][data-y="${y - 1}"]`);
+        const right = document.querySelector(`.playerSq[data-x="${x}"][data-y="${y + 1}"]`);
+        const above = document.querySelector(`.playerSq[data-x="${x - 1}"][data-y="${y}"]`);
+        const below = document.querySelector(`.playerSq[data-x="${x + 1}"][data-y="${y}"]`);
+        const choices = [left, right, above, below];
+        square = choices[randomMinMaxNum(0, 3)];
+        console.log(square)
     }
 
     if (square.className.includes("ship")) {
         square.id = "hit";
+        cpuBoard.prevHit = "hit"
+        cpuBoard.prevAtk = square;
+        console.log(cpuBoard)
+    } else if (cpuBoard.prevHit == "hit") {
+        square.classList.add("miss");
+        cpuBoard.prevHit = "miss"
+        console.log(cpuBoard)
     } else {
         square.classList.add("miss");
+        cpuBoard.prevHit = "miss"
+        cpuBoard.prevAtk = square;
+        console.log(cpuBoard)
     }
 
     // Add a " prevHit " property to cpuBoard class constructor
@@ -56,7 +78,7 @@ function attack() {
     // once the game has provided a " Ship has sunk! " message the cpu will now resume random attacks until it prevHit is === "hit"
 
     document.querySelector(".cpu-message").textContent = `CPU has attacked coordinates ${x}, ${y}!`;
-    setTimeout(gameboardEvents, 2 * 1000);
+    setTimeout(gameboardEvents, 1000);
 }
 
 function cpuShips() {
@@ -131,8 +153,6 @@ export function randomCoord(dir, ship) {
             break;
     }
 
-    console.log(coords, dir, ship.length)
-
     return coords;
 }
 
@@ -142,12 +162,3 @@ export function randomDir() {
 
     return directions[randomNum];
 }
-
-
-// Will probably create a game loop by... Having the AI function be run with a setTimeout after
-// the player has attacked... We could display a message of " AI is attacking... " and it will run
-// the AI attack function after say 5 seconds
-
-// Step 5
-// Create conditions so that the game ends once one players ships have all been sunk. 
-// This function is appropriate for the Game module.

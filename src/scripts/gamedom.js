@@ -172,7 +172,6 @@ export function observeBoard() {
         mutationList.forEach(mutation => {
             if (mutation.target.id == "hit" || mutation.target.className.includes("miss")) {
                 cpuAttack();
-                console.log(`The ${mutation.target.dataset.x}, ${mutation.target.dataset.y} has changed ${mutation.attributeName}`);
             }
         })
     }
@@ -182,19 +181,18 @@ export function observeBoard() {
 
 export function gameboardEvents() {
     const cpuSquares = document.querySelectorAll(".cpuSq");
-    console.log("Fire!")
     gameboardEventLogic(cpuSquares, cpuBoard)
 }
 
 export function gameboardEventLogic(boardSquares, board) {
     boardSquares.forEach(square => {
         square.addEventListener("click", () => {
-            if (square.classList.contains("ship")) {
-                console.log(board)
+            if (square.classList.contains("ship") && !(square.id === "hit")) {
                 board.receiveAttack(square)
-            } else {
+            } else if (!square.classList.contains("miss") && !(square.classList.contains("ship"))) {
                 board.missedAttack(square)
             }
+            return;
         })
     })
 }
