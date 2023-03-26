@@ -3,7 +3,7 @@ import { Ship } from "./main";
 import { startGame } from "./game";
 import { resetListeners } from "./gamedom";
 
-export let playerBoard = new Gameboard("player", []);
+export let playerBoard = new Gameboard("player", [], "CPU");
 
 export function playerBoardEvent(dir, length) {
     resetListeners();
@@ -62,10 +62,21 @@ function checkStartGame() {
     startGame();
 }
 
-// export function checkPlayerShips() {
-//     const remainingShips = playerBoard.ships.length;
-//     if (4 - remainingShips > 0)
-// }
+export function checkPlayerShips() {
+
+    removeSunken();
+}
+
+function removeSunken() {
+    playerBoard.ships.find(ship => {
+        if (ship.sunk == true) {
+            const index = playerBoard.ships.indexOf(ship);
+            playerBoard.ships.splice(index, 1);
+            return;
+        }
+    })
+    return;
+}
 
 export function resetPlayer() {
     const cpuBoard = document.querySelectorAll("#cpu-board div");

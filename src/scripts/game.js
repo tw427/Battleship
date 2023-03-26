@@ -1,8 +1,8 @@
 import { Ship } from "./main"
 import { DomMethods, gameboardEvents, observeBoard, resetListeners } from "./gamedom";
 import { Gameboard } from "./gameboard"
-import { playerBoard } from "./player";
-export const cpuBoard = new Gameboard("cpu", []);
+import { checkPlayerShips, playerBoard } from "./player";
+export const cpuBoard = new Gameboard("cpu", [], "Player");
 
 export function createDOM() {
     const dom = new DomMethods();
@@ -27,8 +27,8 @@ export function cpuAttack() {
     }
     const cpuSquares = document.querySelectorAll("#cpu-board div");
     resetListeners(cpuSquares)
-    document.querySelector(".cpu-message").textContent = "CPU is making an attack...";
-    setTimeout(attack, 0 * 1000);
+    document.querySelector(".cpu-action").textContent = "CPU is making an attack...";
+    setTimeout(attack, 2 * 1000);
 }
 
 function attack() {
@@ -53,7 +53,6 @@ function attack() {
 
         while (randChoice === null || randChoice === undefined || randChoice.id === "hit" || randChoice.classList.contains("miss")) {
             if (choices.length <= 0 || checkChoices(choices)) {
-                console.log("if statement fired")
                 cpuBoard.prevHit = "";
                 randChoice = randomAttack(cpuBoard.prevAtk);
                 break;
@@ -80,8 +79,8 @@ function attack() {
         cpuBoard.prevAtk = square;
     }
 
-    // once the game has provided a " Ship has sunk! " message the cpu will now resume random attacks until it prevHit is === "hit"
-
+    document.querySelector(".cpu-action").textContent = "Your turn!";
+    checkPlayerShips();
     gameboardEvents();
 }
 
@@ -96,7 +95,6 @@ function randomAttack(square) {
 }
 
 function checkChoices(arr) {
-    console.log(arr);
     return arr.every(choice => {
         choice === null || choice === undefined || choice.id === "hit" || choice.classList.contains("miss")
     })

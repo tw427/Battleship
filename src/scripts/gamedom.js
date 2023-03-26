@@ -42,10 +42,12 @@ export class DomMethods {
 
     boardMessages() {
         const cpuMessage = document.createElement("div");
+        const cpuAction = document.createElement("div");
         const plyrMessage = document.createElement("div");
+        cpuAction.classList.add("cpu-action");
         cpuMessage.classList.add("cpu-message")
-        plyrMessage.classList.add("plyr-message")
-        body.append(cpuMessage, plyrMessage);
+        plyrMessage.classList.add("player-message")
+        body.append(cpuMessage, plyrMessage, cpuAction);
     }
 
     resetButton() {
@@ -63,6 +65,9 @@ export class DomMethods {
 
     addShipForm() {
         const addForm = document.createElement("form");
+
+        const formContainer = document.createElement("div");
+        formContainer.classList.add("player-form")
 
         const lengthLabel = document.createElement("label");
         const dirLabel = document.createElement("label");
@@ -86,8 +91,9 @@ export class DomMethods {
         addShip.id = "add-ship"
         addShip.textContent = "Add Ship";
 
+        body.appendChild(formContainer)
         addForm.append(lengthLabel, length, dirLabel, direction, addShip);
-        document.querySelector(".plyr-message").appendChild(addForm);
+        document.querySelector(".player-form").appendChild(addForm);
     }
 
     addShipBtnEvent() {
@@ -106,7 +112,7 @@ export class DomMethods {
         const indicator = document.createElement("p");
         indicator.textContent = "Ships left: 4";
         indicator.id = "ship-remaining";
-        document.querySelector(".plyr-message").appendChild(indicator)
+        document.querySelector(".player-form").appendChild(indicator)
     }
 
     dropdownOptions(options, element) {

@@ -1,7 +1,8 @@
 export class Gameboard {
-    constructor(id, ships) {
+    constructor(id, ships, opponent) {
         this.id = id;
         this.ships = ships;
+        this.opponent = opponent;
         this.board = createBoard();
         this.miss = 0;
         this.hit = 0;
@@ -41,7 +42,7 @@ export class Gameboard {
     }
 
     receiveAttack(square) {
-        const message = document.querySelector(".cpu-message")
+        const message = document.querySelector(`.${this.id}-message`)
         
         if (!this.ships.every(ship => ship.sunk == true)) {
             this.ships.forEach(ship => {
@@ -50,7 +51,7 @@ export class Gameboard {
                         ship.hit()
                         square.id = "hit";
                         ship.sunk == false ? this.hit++ : null;
-                        message.innerText == "Hit!" ? null : message.innerText = "Hit!"
+                        message.innerText == `${this.opponent} hit!` ? null : message.innerText = `${this.opponent} hit!`
                     }
                 })
             })
@@ -63,8 +64,8 @@ export class Gameboard {
     }
 
     missedAttack(square) {
-        const message = document.querySelector(".cpu-message")
-        message.innerText == "Miss" ? null : message.innerText = "Miss"
+        const message = document.querySelector(`.${this.id}-message`)
+        message.innerText == `${this.opponent} missed!` ? null : message.innerText = `${this.opponent} missed!`
 
         square.classList.add("miss")
         this.miss++;
