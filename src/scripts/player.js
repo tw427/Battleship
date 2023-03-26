@@ -72,21 +72,6 @@ export function resetPlayer() {
     resetListeners(cpuBoard);
 }
 
-// function resetListeners(cpu) {
-//     const pBoard = document.querySelectorAll("#player-board div");
-//     pBoard.forEach(square => {
-//         const clone = square.cloneNode(true);
-//         square.parentNode.replaceChild(clone, square)
-//     })
-
-//     if (cpu) {
-//         cpu.forEach(square => {
-//             const clone = square.cloneNode(true);
-//             square.parentNode.replaceChild(clone, square)
-//         })
-//     }
-// }
-
 function shipVisualFX(square, dir, length) {
     const shipArr = [square];
             for (let i = 1; i <= length; i++) {
