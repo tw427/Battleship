@@ -72,7 +72,7 @@ export class Gameboard {
     }
 
     allSunk(msg) {
-        msg.innerText = "All ships have been sunk!";
+        msg.innerText = `All of ${this.id}'s ships have been sunk!`;
     }
 }
 
